@@ -2,6 +2,7 @@
 \setheadfoot{28pt}{1cm}
 
 %%% DIVERSE PAKKER %%%
+\usepackage{float}
 
 % Listings til kode
 
@@ -51,8 +52,10 @@ breakatwhitespace=false,         % sets if automatic breaks should only happen a
 % vÃ¦re ps-fonte, i stedet for bmp
 \usepackage[T1]{fontenc}
 
-% Pakke, der gÃ¸r det muligt at anvende grafikfiler
+% Pakke, der gÃ¸r det muligt at anvende grafikfiler, samt andvende flere captions på samme figure
 \usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
 
 % Pakker, der kan udelades, hvis man ikke gÃ¸r megen brug af matematik
 \usepackage{amsmath}
@@ -77,6 +80,11 @@ breakatwhitespace=false,         % sets if automatic breaks should only happen a
 
 %Hyperlinks i indholdsfortegnelse
 \usepackage{hyperref}
+
+%Itemization i tables og andet leg
+\usepackage{tabularx}
+\usepackage{booktabs} % http://ctan.org/pkg/booktabs
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
 
 \hypersetup{
 	bookmarks=true,  % Vis 'bookmark'-ramme.
