@@ -1,7 +1,10 @@
-\section{Coverage maps}
+\section{Coverage maps based on crowd sourced data}
 \label{sec:covmap}
 
-A map based on coverage data sent from tons of different phones
+The idea is based on the same premises' as the map based on analysis from section \ref{sec:dgrzone} except it is based on connectivity information gathered from different users. The idea is to have many different devices constantly sending information like coordinates and signal strength. This would create a map which would be based on actually data sent from the devices, and could be updated often based on new datasets. This is a more practical approach to creating a coverage map, as signal strength might vary at unexpected events.
+
+In addition to holding the coordinates up against the created map, as the dangerzone map, this solution needs to send some data which can be saved on the database. It is necessary to send coordinates and signal strength, as they are needed to create the map. Dependant on what information you find important, you can save additional data in the database such as provider or device type.
+
 
 \begin{table} [h]
    \begin{center}
@@ -13,8 +16,9 @@ A map based on coverage data sent from tons of different phones
          Advantages & Disadvantages \\
 		& \\\hline
 		& \\
-         \tabitem this is an advantage & \tabitem this an disadvantage \\
-         \tabitem this is an advantage & \tabitem this an disadvantage \\
+         \tabitem highly interchangeable map & \tabitem More data needs to be sent from client side \\
+         \tabitem Requires no data prior to implementation & \tabitem Requires a lot of data before the map is usable \\
+	 \tabitem It is possible to add additional data to the database & \\
 		& \\\hline
       \end{tabularx}
       \caption{this is a dummy}
