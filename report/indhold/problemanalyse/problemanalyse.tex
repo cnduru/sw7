@@ -1,2 +1,9 @@
 \chapter{Problemanalysis}
 \label{chap:prob}
+
+When developing an application for android devices with the purpose to ensure availability of web resources with varying connection to the Internet, it is important to be able to predict when a connection will be available and when it is about to disappear. In order to do so several approaches are available.
+
+A simple approach is to measure the signal strength of the device and use that as the base for predicting when connection will be unavailable. Using this method a stable but slowly dropping signal strength might indicate a future with no connection available, in this event the required web resources should be cached so they are available doing an offline period. Another scenario could when the signal is unstable but the average remains high, this could indicate interference in the area but no risk of a significant offline period, in this case caching is not necessary.
+
+Another approach is to base the prediction on historical data of the near area. This can be done by gathering data of where Internet connections usually drops and build a map for the available providers. Then the caching will be done when a device is predicted to move into such an area.
+
