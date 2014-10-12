@@ -1,12 +1,12 @@
 \input{indstillinger/preamble}
 \begin{document}
 
-\include{formalia/forside}
-\cleardoublepage
+%\include{formalia/forside}
+%\cleardoublepage
 
-\frontmatter
-\include{formalia/titlepage}
-\cleardoublepage
+%\frontmatter
+%\include{formalia/titlepage}
+%\cleardoublepage
 
 
 % De vigtigste forskelle mellem \include og \input ligger i at
@@ -16,7 +16,7 @@
 
 % Se arbejdsblad-skabelon.tex for et eksempel herpå.
 
-\include{formalia/preface}
+%\include{formalia/preface}
 
 % For at sikre sideskift efter forord. Denne kommando bør kun bruges i
 % absolutte undtagelsestilfælde.
@@ -28,13 +28,17 @@
 
 %Main parts of report
 %\listoffixmes
-\input{indhold/introduktion/introduktion}
-\input{indhold/problemanalyse/problemanalyse}
-\input{indhold/prototyper/prototyper}
-\input{indhold/arkitektur/arkitektur}
+%\input{indhold/introduktion/introduktion}
+%\input{indhold/problemanalyse/problemanalyse}
+%\input{indhold/prototyper/prototyper}
+%\input{indhold/arkitektur/arkitektur}
+%\input{indhold/teori/tcp}
+%\input{indhold/implementation/implementation}
+%\input{indhold/konklusion/konklusion}
+\chapter{Scenarios}
+\input{indhold/sce3}
 \input{indhold/teori/tcp}
-\input{indhold/implementation/implementation}
-\input{indhold/konklusion/konklusion}
+
 
 \bibliographystyle{chicago}
 \bibliography{litteratur/litteratur}
