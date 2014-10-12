@@ -1,0 +1,13 @@
+%Author: Dan, Christoffer
+\section{Data Transfer}
+%Reliable transfer, error detection
+Because we are working with transfer of data to a device with an uncertain connection, it is relevant to consider how TCP handles transferring data. An important aspect of this is to ensure reliable transmission, i.e. to make sure all the data is transferred correctly. To ensure this, each byte of data gets a sequence number, allowing the destination host to reconstruct the data in case of for example packet loss. Additionally, when a packet is received, the receiver sends back an acknowledgement, and if such an acknowledgement is not received the packet will be sent again. To ensure correctness of the packet content, each packet has a checksum included which the packet's content can be compared to upon arrival at its destination.\\
+
+This possibility of error checking comes in handy in our project. When a map is transmitted to a client, it ensures that the map data is not corrupted. This is very desirable since corrupted map data could make the map unusable in the best case, and show wrong map data in the worst case.
+
+\subsection{Flow Control}
+It is possible for the server to sent more data than the receiver can process, and to accommodate this a flow control protocol is used. When data is sent, the receiver answers back with a \textit{window size}, telling the sender how much more data it is able to process. If the window size reaches 0, a persist timer will be set to account for the possibility that the updated window size was simply lost. When the timer runs out the server will send a small packet, probing the receiver for an updated window size.
+
+%Should we mention anything about the header overhead?
+
+% Kilde: http://en.wikipedia.org/wiki/Transmission_Control_Protocol#Data_transfer
