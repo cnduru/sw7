@@ -1,9 +1,9 @@
 \subsection{Packaging}
 \label{sec:packingadv}
 
-A solution to losing network services and therefore the possibility to download maps, is to detect that the device is losing network-connection in time. Hereby the device may start downloading maps over the nearby area and store for use once the network connection is lost. These maps should then be compartmentalized into groups with different prioritizations, based on a criteria of nearest-package-first. 
+A solution to losing network services and therefore the possibility to download maps, are to detect when the device is losing network-connection in appropriate time. Hereby the device may start downloading maps over the nearby area and store for use once the network connection is lost. These maps should then be compartmentalized into groups with different prioritzation, based on a criteria of nearest-package-first. 
 
-Downloading the by nearest-package-first requires an indexation of map-packages for a given location of a device. Since our service are to provide maps even when network connection is lost, we intend to use a map-service like Google Maps and not develop our own. Google Maps already divided a map into small packages, which are downloaded and displayed upon request depending on simple GPS-coordinates. New packages will be downloaded and displayed when the user moves the map on a mobile-device. The problem we deal with, are which packages to download without knowing more than GPS-coordinates. 
+Downloading the by nearest-package-first requires an indexation of map-packages for a given location of a device. Since our service are to provide maps even when network connection is lost, we intend to use a map-service like Google Maps and not develop our own. Google Maps already divided a map into small packages, which we could use for downloading and displaying upon request depending on simple GPS-coordinates. New packages will be downloaded and displayed when the user moves the map on a mobile-device. The problem that has to be dealt with, are which packages to download without knowing more than GPS-coordinates. 
 
 We put forward three solutions to this problem:
 \begin{itemize}
