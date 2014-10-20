@@ -1,13 +1,12 @@
 ﻿#Ignore the build directory
-/report/out
 /report/main.pdf
 *.aux
 *.bbl
 *.blg
 *.log
 *.out
-*.pdf
 *.toc
 *.gz
 *.log
+*.lox
 
