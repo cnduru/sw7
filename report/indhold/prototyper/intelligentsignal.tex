@@ -1,4 +1,4 @@
-\section{Downloading based on signal strength}
+\section{Downloading Based on Signal Strength}
 \label{sec:sigstr}
 
 This idea is simple application where the device constantly checks its signal strength. When the application detects a drop low enough in the signal strength, it asks the server for a map according to coordinates. The idea is simple to implement but runs into some restrictions about how much data can be sent in the given time available. If the trigger is set too low there wont be enough time or data to send a big map from the server, and if the trigger is set too high it will trigger from small swings in the signal strength and send too much data all the time.
