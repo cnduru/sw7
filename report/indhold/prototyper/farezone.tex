@@ -1,4 +1,4 @@
-\section{Dangerzone map based on analysis}
+\section{Dangerzone Map Based on Analysis}
 \label{sec:dgrzone}
 
 The thought behind this idea is simple and easy to implement given we have the information needed to do the analysis. The idea is to design a heat map based on some sort of information - in this example we will be using location of radio towers and  the location of forests. The closer to a radio tower, the more heat on the map and as we traverse away from the tower the signal would grow colder. Whenever two signals overlap the heat would rise in that section as illustrated in figure \ref{fig:tempdgr_1}. In our example forests obstruct the signal, therefore creating less signal on the opposing side of the forest, this is illustrated in \ref{fig:tempdgr_2}. With these implications we can build the entire map based on information gathered before the application is launched. 
