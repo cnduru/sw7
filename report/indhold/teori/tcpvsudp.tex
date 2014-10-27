@@ -1,0 +1,7 @@
+\subsection{TCP/IP versus UDP}
+We would like to consider two aspects of TCP/IP versus UDP. The first aspect is which protocol is cheapest in space usage when transferring from one unit to another. The second aspect is which protocol offers the best suited services for our application.
+
+The reasoning behind these question lies in the problem we try to solve. We want to try to download data on a lowered connectivity or within a limited time-span before the device goes offline. Therefore we investigate TCP/IP versus UDP further.
+
+When transferring data from one unit to another, the size of data to send varies. However, the header has a minimum or fixed size it always uses, without considering the size of the data the user wants to send. With TCP/IP the size of the header is 21 octets(\cite{tcpdesc}). 
+\cite{udpdesc}
