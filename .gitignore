@@ -1,4 +1,5 @@
 ﻿#Ignore the build directory
+/report/out
 /report/main.pdf
 *.aux
 *.bbl
