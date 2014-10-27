@@ -1,7 +1,8 @@
 \subsection{TCP/IP versus UDP}
 We would like to consider two aspects of TCP/IP versus UDP. The first aspect is which protocol is cheapest in space usage when transferring from one unit to another. The second aspect is which protocol offers the best suited services for our application.
 
-The reasoning behind these question lies in the problem we try to solve. We want to try to download data on a lowered connectivity or within a limited time-span before the device goes offline. Therefore we investigate TCP/IP versus UDP further.
+These questions are related to the problem we try to solve. We want to try to download data on an endangered connection or download within a limited time-span before the device goes offline. Therefore we investigate TCP/IP versus UDP further.
 
-When transferring data from one unit to another, the size of data to send varies. However, the header has a minimum or fixed size it always uses, without considering the size of the data the user wants to send. With TCP/IP the size of the header is 21 octets(\cite{tcpdesc}). 
-\cite{udpdesc}
+When transferring data from one unit to another, the size of data to send varies depending on the program. However, the header has a minimum or fixed size it always uses, without considering the size of the data the user wants to send. In TCP/IP, the size of the header is 21 octets\cite{tcpdesc}. In UDP, the size of the header is 8 octets\cite{udpdesc}. In comparison, UDP uses 38\% of what TCP/IP uses for each exchange.
+
+The services provided by TCP/IP are reliability through error checking and delivery validation whereas UDP emphasizes low-overhead operation and reduced latency\cite{wiki-tcp}. Both protocols provide valid services to be used when solving our problem. TCP/IP will ensure we have correct, consistent and working data. UDP could be used for transferring GPS-coordinates because they will be transferred extensively when the application is running. Losing an UDP transaction will not break the application. If a few data is lost or inconsistent, new data will be sent in the very near future.
