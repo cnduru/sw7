@@ -1,0 +1,6 @@
+\subsection{Blocking vs. non-blocking I/O}
+For the client/server socket communication, a choice between blocking (synchronous) and non-blocking (asynchronous) I/O has to be taken.
+% % blocking % %
+Blocking I/O can have a better performance than non-blocking, but can cause problems when using a threaded architecture that spawns a new thread for each client.
+% % non-blocking % %
+Non-blocking I/O is chosen for this project. It scales well when there are many clients, and the system should scale well with an increasing number of clients. The ability to scale well does not come for free, however. Non-blocking IO is not always as fast as blocking IO and this can result in decreased performance. 
