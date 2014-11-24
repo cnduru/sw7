@@ -1,4 +1,16 @@
-\subsection{Synchronous vs. Asynchronous I/O}
+%What is NB I/O?
+
+%What are the advantages and disadvantages?
+
+%Which alternative(s) is/are there?
+
+%Why did we make the choice we did?
+
+%How flexible is it?
+% - Could it easily be changed? 
+% - Could both be implemented and the framework-user decides which one to use?
+
+\section{Synchronous vs. Asynchronous I/O}
 For the client/server socket communication, a choice between synchronous and asynchronous I/O has to be taken.
 % % blocking % %
 Synchronous I/O can have a better performance than asynchronous, but can cause problems when using a threaded architecture that spawns a new thread for each client. This is particularly true when the server should be scalable in regards to its number of connected clients. There might be 5 and there might be 5000.
