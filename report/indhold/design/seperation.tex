@@ -1,10 +1,11 @@
 \section{Seperation of Framework and Game}
 %It should be possbile to build a new game on the same framework.
-
+The framework and the game is split into two completely seperate components. This enables creation of a new game on the same framework. 
 %Why is the framework and game seperated?
-
+The reason for this choice, is that the framework can be reused for different games. Because of this future developers who would like to make a game can reuse the framework and do not have to touch any framework code, only the game code itself. 
 %Why is it a good idea, and what are the tradeoffs?
-
+Developing the framework and game as two completely independent components has a number of good side effects. First of all, it makes it easier to avoid writing code which is intertwined (between the framework and the game). 
 %What would happen if it is not split up?
-
+If this was not avoided, it would be very hard to create an independent framework, since part og the game which was developed on top of the framework would be tied into the framework and vice versa. Therefore, a clear code-wise distinction between framework and server produces cleaner, more independent overall program structure. 
 %Discuss the constraints of the framework (e.g. database schema, efficiency).
+Because the framework and game are separated components, the framework has some limitations. The framework essentially enables development of many kinds of networked multiplayer games. Therefore, the database's tables for example have to be quite ``fixed'', since the developers of the games for the framework should not need to change the database and framework code. A database change will likely warrant some code in the framework to be rewritten. If the developers have to start rewriting code in the framework to develop their game, the point of the framework is lost. 
