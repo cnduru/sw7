@@ -1,8 +1,62 @@
-\section{Game Rules}
-%Why did we make game rules?
+\section{Game scenario}\label{sec:game}
 
-%What are pros and cons of making them? (aka how do they help us, how do they limit us?)
+This section describes the game we have decided to focus on. We will not be implementing the game itself, but rather build the server with the functionality to eventually be able to implement it - if you wanted to. 
 
-%Write the game rules.
+It was created for the purpose of setting a limitation for the server functionality otherwise we could have kept creating functionality for multiple different purposes. The game we have decided to portray is a game based on the real-life coordinates of the contestants. The game should be playable among friends, and be interactive. The game a prototype that could be implemented on top of our server and balance is in no way to be considered in the final review.
 
-%Discuss how easily a different set of rules could be implemented
+The biggest advantage of creating a scenario game like this as mentioned above, creating a general set of functionality needed on the server side. It furthermore provides a goal which definitely helps with motivation and work-culture - in the sense that we easily could segment the project. One of the drawbacks of using a scenario like this is that we focus strictly on it and might exclude functionality that could be great on the server side but might not be needed for our scenario. We furthermore might not get the flexibility we look for in a server as we don't have different types of games to test it with.
+
+\subsection{Game Rules}\label{subsec:game-rules}
+
+The following is a description of the game.
+
+\paragraph{Game winning criteria}
+The idea is for one of the competing teams to obtain an ultimate relic. Once that has been found the game should end with a victory for the team with the relic. At the start of the game it is impossible to know where the relic is located, and you gradually locate it by finding clues around the map.
+Another way to win is to be the team with the largest amount of points if a time-limit is set and reached.
+
+\paragraph{Objectives}
+There is a list of different objectives each with an unique functionality and meaning to the game.
+\begin{itemize}
+\item Point Objectives - Gives +1 team point, takes 30 seconds to capture and reveals your locations to nearby enemies for 120 seconds.
+\item Puzzle Objectives - Gives your team a clue, takes 300 seconds to capture and reveals your location for 600 seconds.
+\item Crates - Can contain weapons, instantly acquired and reveals your location for 120 seconds.
+\item Powerups - Can contain bonus for your stats,  instantly acquired and reveals your location for 120 seconds.
+\item Shrines - Will give different bonuses depending on the shrine type, the shrine is active for 4 hours after activation, takes 300 seconds to capture and reveals your location for 600 seconds.
+\item Ultimate relic - Digging for the ultimate relic has a one hour cooldown, takes 300 seconds to capture and reveals your location for 600 seconds.
+\item Watchtowers - Gives increased range when within the tower.
+\end{itemize}
+
+\paragraph{Items}
+There is a list of different items in the game as well. These items are obtainable through crates dropping.
+\begin{itemize}
+\item Start-pistol - Range: 25 meter, Damage: 20 HP, reveal-time: 60 seconds and cooldown: 20 seconds.
+\item Shotgun - Range: 15 meter, Damage: 60 HP, reveal-time: 90 seconds and cooldown: 30 seconds.
+\item Sniper - Range: 40-80 meter, Damage: 70 HP, reveal-time: 90 seconds and cooldown: 120 seconds.
+\item Ammunition - Pistol ammunition +16 bullets, Shotgun ammunition +4 shells and Sniper Ammunition +3 bullets.
+\item Medkit - gives +25 health points on pick up.
+\end{itemize}
+
+\paragraph{Powerups}
+This is the list of what is obtainable at powerups.
+\begin{itemize}
+\item Armor - +15 Armor (Max 50 Armor)
+\item Vision - +2 meter (Max 50 Meter)
+\item Scan - +20 meter (Max 60 Meter)
+\item Range - +2\% range (Max 6\% Range)
+\item Shield - Blocks the next shot
+\end{itemize}
+
+\paragraph{Shrines}
+The following is a list of the different shrines and functionality.
+\begin{itemize}
+\item Power Plant - Provides 2 points every half an hour.
+\item Locater - Pinpoints the location of an object in range of scan every half an hour.
+\item Shield Generator - Gives the entire team a shield every hour.
+\item Factory - Provides each user on the team with 3 pistol bullets, 2 shotgun shells and 1 sniper bullet every half an hour.
+\end{itemize}
+
+\subsection{Different game scenarios}\label{subsec:game-scenarios}
+Given we created a server functionality completely independent of the game implemented on top \fxnote{reference til separate frameworks fra server shit}, a lot of different games can be implemented. The game might not even focus on coordinates of the players but simply be an ordinary multi-player game. One could imagine a multi-player Pacman game, where some people play ghost and one person play Pacman - this could easily be built on our server. The server would receive actions performed by the user and adjust the game accordingly.
+Basically the server is simply an implementation of the multi-player aspect of a game and hosting a game. 
+
+
