@@ -1,4 +1,9 @@
-%What is NB I/O?
+% http://www.ducons.com/blog/tests-and-thoughts-on-asynchronous-io-vs-multithreading
+% http://msdn.microsoft.com/en-us/library/windows/desktop/aa365683(v=vs.85).aspx
+% 
+
+
+%What is B/NB I/O?
 
 %What are the advantages and disadvantages?
 
@@ -13,7 +18,7 @@
 \section{Synchronous vs. Asynchronous I/O}
 For the client/server socket communication, a choice between synchronous and asynchronous I/O has to be taken.
 % % blocking % %
-Synchronous I/O can have a better performance than asynchronous, but can cause problems when using a threaded architecture that spawns a new thread for each client. This is particularly true when the server should be scalable in regards to its number of connected clients. There might be 5 and there might be 5000.
+Synchronous I/O can have a better performance than asynchronous, but can cause problems when using a threaded architecture that spawns a new thread for each client. This is particularly true when the server should be scalable in regards to its number of connected clients. There might be 5 and there might be 5000 or even more.
 Tests show that threads are very efficient when it comes to memory and context switching, but only when the threads are kept alive for the entire execution of an application. This is not the case for our application, which will likely have many connections of varying durations during its up-time. \fixme{cite}\\\\
 % % non-blocking % %
 Asynchronous I/O is chosen for this project. It scales well when there are many clients, and the system should scale well with a potentially large number of clients. A notable advantage of asynchronous is that it limits the number of concurrent threads. The server asynchronously accepts a connection request from a client, and then starts an asynchronous worker thread to handle communication with the client. Meanwhile it continues to listen for new client connections.
