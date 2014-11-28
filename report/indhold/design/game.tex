@@ -2,20 +2,20 @@
 
 This section describes the game we have decided to focus on. We will not be implementing the game itself, but rather build the server with the functionality to eventually be able to implement it - if you wanted to. 
 
-It was created for the purpose of setting a limitation for the server functionality otherwise we could have kept creating functionality for multiple different purposes. The game we have decided to portray is a game based on the real-life coordinates of the contestants. The game should be playable among friends, and be interactive. The game a prototype that could be implemented on top of our server and balance is in no way to be considered in the final review.
+It was created for the purpose of setting a limitation for the server functionality otherwise we could have kept creating functionality for multiple different purposes. The game we have decided to portray is a game based on the real-life coordinates of the participants. The game should be playable among friends, and be interactive. The game is a prototype that could be implemented on top of our server and balance is in no way to be considered final in the game.
 
-The biggest advantage of creating a scenario game like this as mentioned above, creating a general set of functionality needed on the server side. It furthermore provides a goal which definitely helps with motivation and work-culture - in the sense that we easily could segment the project. One of the drawbacks of using a scenario like this is that we focus strictly on it and might exclude functionality that could be great on the server side but might not be needed for our scenario. We furthermore might not get the flexibility we look for in a server as we don't have different types of games to test it with.
+The biggest advantage of creating a specific game scenario like this is a better insight to the general set of functionality needed on the server side. It furthermore provides a goal which helps with motivation and work-culture in the sense that we easily could segment the project. One of the drawbacks of using a scenario like this, is that, if not careful, could accidentally focus strictly on the scenario and might exclude functionality that could be great on the server side. Just because the functionality does not fit a certain scenario does not mean it is not useful for a general model. Furthermore, we might not get the flexibility we look for in a server as we don't have different types of games to test it with.
 
 \subsection{Game Rules}\label{subsec:game-rules}
 
-The following is a description of the game.
+The following is a description of the game scenario.
 
 \paragraph{Game winning criteria}
-The idea is for one of the competing teams to obtain an ultimate relic. Once that has been found the game should end with a victory for the team with the relic. At the start of the game it is impossible to know where the relic is located, and you gradually locate it by finding clues around the map.
+The idea is for one of the competing teams to obtain an ultimate relic. Once a team locates it, the game should end with a victory for the team with the relic. At the start of the game it is impossible to know where the relic is located, and you gradually locate it by finding clues around the map.
 Another way to win is to be the team with the largest amount of points if a time-limit is set and reached.
 
 \paragraph{Objectives}
-There is a list of different objectives each with an unique functionality and meaning to the game.
+There is a list of different objectives each with a unique functionality and meaning to the game.
 \begin{itemize}
 \item Point Objectives - Gives +1 team point, takes 30 seconds to capture and reveals your locations to nearby enemies for 120 seconds.
 \item Puzzle Objectives - Gives your team a clue, takes 300 seconds to capture and reveals your location for 600 seconds.
@@ -37,7 +37,7 @@ There is a list of different items in the game as well. These items are obtainab
 \end{itemize}
 
 \paragraph{Powerups}
-This is the list of what is obtainable at powerups.
+This is the list of what is obtainable as powerups.
 \begin{itemize}
 \item Armor - +15 Armor (Max 50 Armor)
 \item Vision - +2 meter (Max 50 Meter)
@@ -47,7 +47,7 @@ This is the list of what is obtainable at powerups.
 \end{itemize}
 
 \paragraph{Shrines}
-The following is a list of the different shrines and functionality.
+The following is a list of the different shrines and functionality. Shrines expire after a given amount of hours.
 \begin{itemize}
 \item Power Plant - Provides 2 points every half an hour.
 \item Locater - Pinpoints the location of an object in range of scan every half an hour.
@@ -56,7 +56,7 @@ The following is a list of the different shrines and functionality.
 \end{itemize}
 
 \subsection{Different game scenarios}\label{subsec:game-scenarios}
-Given we created a server functionality completely independent of the game implemented on top \fxnote{reference til separate frameworks fra server shit}, a lot of different games can be implemented. The game might not even focus on coordinates of the players but simply be an ordinary multi-player game. One could imagine a multi-player Pacman game, where some people play ghost and one person play Pacman - this could easily be built on our server. The server would receive actions performed by the user and adjust the game accordingly.
+Given we created a server functionality completely independent of the game implemented on top \fxnote{reference til separate frameworks fra server shit}, a lot of different games can be implemented. The game might not even focus on coordinates of the players but simply be an ordinary multi-player game. One could imagine a multi-player Pac-Man game, where some people play ghost and one person play Pac-Man - this could easily be built on our server. The server would receive actions performed by the user and adjust the game accordingly.
 Basically the server is simply an implementation of the multi-player aspect of a game and hosting a game. 
 
 
