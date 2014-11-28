@@ -17,8 +17,9 @@ Updates to a game can be split into two groups. One group is specific changes to
 
 Updating a players position is trivial. The game thread receives a game-id, player-id and a new position. It calls the database-controller to store the new position in the database.
 
-When performing an action like firing a gun, the server will have to fetch the gunmans position and the victims position. It will then calculate if the range of the fired weapon allows the victim to be hit. If the shot is successful it will return that to the player, if the shot is unsuccessful it will return that the victim is out of range. 
+When performing an action like firing a gun, the server will have to fetch the gunman's position and the victim's position. It will then calculate if the range of the fired weapon allows the victim to be hit. If the shot is successful it will return that to the player, if the shot is unsuccessful it will return that the victim is out of range. 
 
+All updates to change the state of a game will be in the game thread-class. This class will need to contain methods for all the in-game functionality. 
 
 \paragraph{Closing a game}
 When a game ends, the call will come from the timer thread. This will ask the game thread to clean up what is has stored in the database, and return a status message. The timer thread will then continue to close the game thread. 
