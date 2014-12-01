@@ -3,6 +3,52 @@
 %Server and client both consist of several small parts that all need to communicate.
 %Examples: user->client, client->server, game->db...
 
+We have decided that all information between the server and the client are shared in the form of XML. We have chosen to do so because of the diversity XML provides, and its interoperability with a wide variety of software. This fits well within the theme of creating a very customizable framework for creating games. Furthermore we feel that XML is somewhat of a standard for file sharing - and many people already know how to make use of it.
+
+\subsection{Client and Server correspondence}
+
+The idea behind the XML output is to create tags for each different kind of data. We have different kinds of data to sent depending on which activity we take on the client side. An example of this could be the login activity on the client side, this requires sending some username and a password for confirmation on the server side.
+
+We create individual methods for each different scenario rather than creating a generic XML converter because we want to enforce the right data structures and types. The example below is the said convert to XML login method. 
+
+\begin{lstlisting}
+    public static String login(String username, String password) {
+
+        String tag = "Login";
+        String entryA = "Username";
+        String entryB = "Password";
+
+        String xml = "";
+
+        xml += "<" + tag + ">";
+        xml += "<" + entryA + ">" + username + "</" + entryA + ">";
+        xml += "<" + entryB + ">" + password + "</" + entryB + ">";
+        xml += "</" + tag + ">";
+
+        return xml;
+    }
+\end{lstlisting}
+
+It simply converts the input of the variables username and password into XML on the form (except it being on a single string). The information is structured around what the server needs for authentication - so what the client sends is of course built around what the server requires.
+
+\begin{lstlsting}
+<Login>
+   <Username> USERNAME </Username>
+   <Password> PASSWORD </Password>
+</Login>
+\end{lstlisting}
+
+A basic principle of TCP is that the client always require a response from server before it can move on. For the same reasons mentioned above and for the sake of consistency the client expects XML on roughly the same form. For this example we require an ID for the specific user to load his specific settings/information. We also require a boolean in the case that it wasn't a valid login, this is then handled on the client side. The following code is what a client expects to receive.
+
+\begin{lstlisting}
+<Login>
+   <Id> IDENTIFICATION </Id>
+   <Valid> BOOL </Valid>
+</Login>
+\end{lstlisting}
+
+XML provides a really easy way to dispatch or deserialize the input - making it an optimal solution for small constant interactions like the ones we need.
+
 %PROJECT IMPACT:
 %Several sub-groups are developing the different parts, so...
 %How does this need for communication impact development?
