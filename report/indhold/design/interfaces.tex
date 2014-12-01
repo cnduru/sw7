@@ -9,27 +9,9 @@ We have decided that all information between the server and the client are share
 
 The idea behind the XML output is to create tags for each different kind of data. We have different kinds of data to sent depending on which activity we take on the client side. An example of this could be the login activity on the client side, this requires sending some username and a password for confirmation on the server side.
 
-We create individual methods for each different scenario rather than creating a generic XML converter because we want to enforce the right data structures and types. The example below is the said convert to XML login method. 
+We create individual methods for each different scenario rather than creating a generic XML converter because we want to enforce the right data structures and types. 
 
-\begin{lstlisting}
-    public static String login(String username, String password) {
-
-        String tag = "Login";
-        String entryA = "Username";
-        String entryB = "Password";
-
-        String xml = "";
-
-        xml += "<" + tag + ">";
-        xml += "<" + entryA + ">" + username + "</" + entryA + ">";
-        xml += "<" + entryB + ">" + password + "</" + entryB + ">";
-        xml += "</" + tag + ">";
-
-        return xml;
-    }
-\end{lstlisting}
-
-It simply converts the input of the variables username and password into XML on the form (except it being on a single string). The information is structured around what the server needs for authentication - so what the client sends is of course built around what the server requires.
+The information is structured around what the server needs for authentication - so what the client sends is of course built around what the server requires.
 
 \begin{lstlisting}
 <Login>
