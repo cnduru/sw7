@@ -1,8 +1,9 @@
 \section{Design Patterns}
-When considering how to design a software solution it can be a good idea to consider using some design patterns. Without those, code easily becomes messy later on in the project. Patterns can help by providing conventions and best practices to use as guidelines. With defined patterns it can be ensured that everyone working on the project has similar understandings of the code. It is worth to note that like everything, patterns can be misused; It is important to choose those that will fit the project, rather than try to force harmful patterns on to it. Below is a description of patterns found usable in this project.
+When considering how to design a software solution it can be a good idea to consider using some design patterns. Without those, code easily becomes messy later on in the project. Patterns can help by providing conventions and best practices to use as guidelines. With defined patterns it can be ensured that everyone working on the project has similar understandings of the code. It is worth to note that like everything, patterns can be misused; It is important to choose those that will fit the project, rather than try to force harmful patterns on to it. 
+
+Below is a description of patterns found usable in this project. Patterns are split into two, one with patterns applicable in the client application, another with patterns applicable on the server program.
 
 \subsection{Patterns in the application}
- 
 \textbf{Singleton} was an obvious pattern to use in the application for certain elements. Firstly, the application including all activities are singleton. This is enforced by Android. There is no reason why the user should run multiple instances of the game. A certain class called "Client" is however also important to keep singleton. This class is responsible for opening a connection to the server and handle communication. It should not be allowed for a user to send multiple requests to the server at once.
 
 \textbf{Lazy Initialization} have been used to save some resources. Why the application does not perform any major operations, it should always be remembered that it is running on a phone and that it has a battery. As such, most initializations of objects has been pushed back to the point where they are required.
@@ -18,7 +19,7 @@ When considering how to design a software solution it can be a good idea to cons
 \label{fig:facadepattern}
 \end{figure} 
 
-\subsection{Patterns on Server}
+\subsection{Patterns on server}
 % If you are about to write about thread pool, we are not using a thread pool. We just make a thread for each game.
 
 % for pattern in project:
