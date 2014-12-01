@@ -1,3 +1,8 @@
+\subsection{Game thread-pool}
+The game thread-pool is a collection of active game thread-instances, uniquely identified by a game-Id.
+
+The game thread-pool is used as a handle to the game threads, and allows dynamic call to the desired game through method-parametrization. 
+
 \subsection{Game thread}
 \paragraph{Starting a game}
 A game thread will be initialized and started whenever a user requests to host a game. User-specified settings for hosting the game are sent as part of the request to host the game. These are then initialized and the game will be created in the database which assigns it a game-id be assigned a game-id for future identification.
