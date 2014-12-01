@@ -5,14 +5,14 @@ The game thread-pool is used as a handle to the game threads, and allows dynamic
 
 \subsection{Game thread}
 \paragraph{Starting a game}
-A game thread will be initialised and started when a user requests to host a game. A game will be assigned a game-id by the server, user-specified settings for hosting the game will be initialised and the game will be created in the database. 
+A game thread will be initialized and started whenever a user requests to host a game. User-specified settings for hosting the game are sent as part of the request to host the game. These are then initialized and the game will be created in the database which assigns it a game-id be assigned a game-id for future identification.
 
-When the server initialises each setting, it calls a method within the game thread-class. These methods calls the database-controller to change the state of the game in the database. These settings are:
+When the server initializes each setting, it calls a method within the game thread-class. These methods calls the database-controller to change the state of the game in the database. These settings are:
 \begin{itemize}
 \item Game-privacy (Public or private game)
 \item Number of teams
 \item Game start-time
-\item Game end-time
+\item Game end-time (If any)
 \item Game-boundary NorthWest GPS-coordinate
 \item Game-boundary SouthEast GPS-coordinate
 \end{itemize}
@@ -24,7 +24,7 @@ Updating a players position is trivial. The game thread receives a game-id, play
 
 When performing an action like firing a gun, the server will have to fetch the gunman's position and the victim's position. It will then calculate if the range of the fired weapon allows the victim to be hit. If the shot is successful it will return that to the player, if the shot is unsuccessful it will return that the victim is out of range. 
 
-All updates to change the state of a game will be in the game thread-class. This class will need to contain methods for all the in-game functionality. 
+All updates to change the state of a game will be in the game-thread class. This class will need to contain methods for all the in-game functionality. 
 
 \paragraph{Closing a game}
 When a game ends, the call will come from the timer thread. This will ask the game thread to clean up what is has stored in the database, and return a status message. The timer thread will then continue to close the game thread. 
