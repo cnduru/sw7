@@ -1,19 +1,17 @@
 \section{Server Architecture}
-%The purpose of this section is to describe the overall architecture of the server.
+The server is structured in three layers a dispatcher service, some domain objects and a database layer. 
 
-% Something like:
+\paragraph{Dispatcher Service}
+The dispatcher is a service responsible for handling the communication with the client. It consist of a asynchronous IO and the dispatcher itself. Communication is done by an XML interface where requests from the client is verified by the dispatcher and passed to either the Admin module or a Game Thread depending on the message. 
 
-%		Client
-%		------
-%Server:  IO
-%       [] [] [] [] []...
-%     [Game1] [Game 2] ... [Game n]   [MENU/LOGIN]
-%     []  []  []  [] []...
-%        [DB]
+\paragraph{Domain Objects}
+This layer represent the business logic of the server application. The Admin module handles user creation, user login and game creation and is general for all game implementations. Game Thread is where specific game logic is implemented and its implementation will vary depending on the type of game. Event Timer is a general module handling events specified to happen at certain times. The game threads are responsible for creating events for themselves. The event timer will then notify a game thread at the specified time.
 
-% Class diagram
+\paragraph{Data Layer}
+Is the database representation in the model using the data mapper pattern\fxwarning{WE book ref}. The gateway is responsible for querying and updating the database and mapping the tables to objects used in the game logic and administration.
 
-% Database schema
+\fxwarning{fix bad import}
+\input{billeder/serverArchitecture}
 
 \subsection{Database}
 In this project a database was needed to keep track of all information related to users and games they are playing. The database is designed with flexibility in mind which means that the logic behind a game is responsible for interpreting the data in the database. \figref{fig:ER}\fxwarning{export new ER diagram} shows the entity relation diagram for the database without attributes. The database is structured as follows:
