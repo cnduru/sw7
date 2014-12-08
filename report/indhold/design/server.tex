@@ -1,5 +1,5 @@
 \section{Server Architecture}
-The server is structured in three layers a dispatcher service, some domain objects and a database layer. The 
+The server is structured in three layers a dispatcher service, some domain objects and a database layer. 
 
 \paragraph{Dispatcher Service}
 The dispatcher is a service responsible for handling the communication with the client. It consist of a asynchronous IO and the dispatcher itself. Communication is done by an XML interface where requests from the client is verified by the dispatcher and passed to either the Admin module or a Game Thread depending on the message. 
