@@ -6,3 +6,6 @@ The game thread has to handle a lot of different calls from different parts of t
 
 All public methods in the game thread receives a string as parameter, because the methods within game thread handles the XML by itself. This XML is made by the client and contains all parameters the method needs. Each method in the game thread can then use the XMLhandler to pull out the desired data and convert it to the right type. The method hereby receives an object as the right type which it can proceed to work with.
 
+The game thread contains private methods for handling private calculations. An example of this could be the method called \textit{PlaceObjectsOnRectangularBoard}, which is called when creating a game. It takes an argument for the number of objects to place on the board, the south-east boundary coordinate, the north-west boundary coordinate, and the collision radius to keep between the objects to handle the spread on the board. 
+
+
