@@ -1,0 +1,8 @@
+\section{Implementation of Game Thread}
+\label{sec:gamethreadimpl}
+Each active game is running as an instance of the game thread class on a separate thread on the server. The thread will not perform any actions on its own, but sits idle until another part of the server initializes a call to it. The parts of the server which can perform a call to a game thread are Admin, Dispatcher, GlobalTimerThread. Further explanation can be seen in design of game thread\ref{designgamethread}. 
+
+The game thread has to handle a lot of different calls from different parts of the server, however it does not hold any game specific information itself. Every change to a game state, locations, events, actions, etc, will change the state of a game in the database. Therefore the game thread acts as a connection between information stored in the database and the requests made by the client.
+
+All public methods in the game thread receives a string as parameter, because the methods within game thread handles the XML by itself. This XML is made by the client and contains all parameters the method needs. Each method in the game thread can then use the XMLhandler to pull out the desired data and convert it to the right type. The method hereby receives an object as the right type which it can proceed to work with.
+
