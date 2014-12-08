@@ -1,0 +1,45 @@
+\section{Implementation of Dispatcher}
+\label{chap:dispImplementation}
+The dispatcher is a central component in the framework. It is consists of two parts into two parts, an admin part which handles XML data containing login information and a game thread part, that handles the other XML data. Everything that is not account related actions, such as login, is handled by the GameThread class.\\
+
+ As the name implies, the dispatcher simply dispatches a call to the appropriate method with the appropriate parameters when it receives XML data. In order to do this, it also deserializes the XML to extract data to pass on to the appropriate methods. An example of this can be seen in \cref{lst:loginSample}.\\
+ 
+ Each of the methods that can then be called know how to handle the specific data they are sent. The dispatcher looks for a method name in the XML and then extracts parameters from the XML. It The method is then dynamically called. This can be seen in \cref{lst:dynamicCall}. After the dispatcher has dispatched a call, it receives an XML string from the method it called containing data to be used by the client. The dispatcher then returns that string and it is sent to the client, which decides how to act on the XML it receives.
+
+\begin{lstlisting}
+\label{lst:dynamicCall}
+string methodCall = xh.GetMethodCallFromXML(xml);
+object[] methodParams = {xml};
+
+Type type = typeof(GameThread);
+MethodInfo method = type.GetMethod(methodCall);
+GameThread c = AsynchronousSocketListener.gameThreadPool.GetGameInstance(xh.GetGameIdFromXML(xml));
+string result = (string)method.Invoke(c, methodParams);
+
+return result;
+\end{lstlisting}
+
+\begin{lstlisting}
+\label{lst:loginSample}
+public string[] GetLoginData(string xml) 
+{
+    string pattern = @"<Login><Username>([a-zA-Z0-9]*)<\S*<Password>([a-zA-Z0-9]*)<";
+
+    Regex rgx = new Regex(pattern, RegexOptions.IgnoreCase);
+    MatchCollection matches = rgx.Matches(xml);
+
+    string[] res = {"", ""};
+
+    if (matches.Count > 0)
+    {
+        foreach (Match match in matches)
+        {
+            res[0] = match.Groups[1].Value;
+            res[1] = match.Groups[2].Value;
+        }
+            
+    }
+
+    return res;
+}
+\end{lstlisting}
