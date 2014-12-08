@@ -8,7 +8,7 @@ The dispatcher is a service responsible for handling the communication with the 
 This layer represent the business logic of the server application. The Admin module handles user creation, user login and game creation and is general for all game implementations. Game Thread is where specific game logic is implemented and its implementation will vary depending on the type of game. Event Timer is a general module handling events specified to happen at certain times. The game threads are responsible for creating events for themselves. The event timer will then notify a game thread at the specified time.
 
 \paragraph{Data Layer}
-Is the data representation in the model 
+Is the database representation in the model using the data mapper pattern\fxwarning{WE book ref}. The gateway is responsible for querying and updating the database and mapping the tables to objects used in the game logic and administration.
 
 \fxwarning{fix bad import}
 \input{billeder/serverArchitecture}
