@@ -3,9 +3,18 @@ The game thread-pool is a collection of active game thread-instances, uniquely i
 
 The game thread-pool is used as a handle to the game threads, and allows dynamic call to the desired game through method-parametrization. 
 
-\subsection{Game thread}
+\subsection{Game thread}\label{designgamethread}
+The game thread will handle requests from three parts of the server, Admin, Dispatcher, GlobalThreadTimer.
+
+The Admin will handle creation, initialization and launching of a new game thread. The request is sent from the client, along side a collection of settings for the game. These settings \fxfatal{indsæt ref til xml interface client til server} can be seen in the client to server interface. 
+
+The Dispatcher handles request to change the state of a game. These requests is sent by the client, some actively requested by the user and some passively by the client program. An active request could be to invite a player to a game. A passive request could be to update the players position in a game and receive changes to the board.
+
+The GlobalTimerThread handles events which changes the state of a game thread. The could be to spawn new objects on the board at a random time in an already active game. 
+
+
 \paragraph{Starting a game}
-A game thread will be initialized and started whenever a user requests to host a game. User-specified settings for hosting the game are sent as part of the request to host the game. These are then initialized and the game will be created in the database which assigns it a game-id be assigned a game-id for future identification.
+A game thread will be initialized and started whenever a user requests to host a game. It is the Admin-class which handles the creation by receiving user-specified settings for hosting the game. These settings are then used to initialize the game and it will be created in the database which assigns a game-id to it for future identification.
 
 When the server initializes each setting, it calls a method within the game thread-class. These methods calls the database-controller to change the state of the game in the database. These settings are:
 \begin{itemize}

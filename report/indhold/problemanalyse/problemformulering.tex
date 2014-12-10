@@ -1,10 +1,17 @@
-\chapter{Problem Analysis}
-\label{chap:prob}
-When using a mobile device on the go, a good network connection is not always available, but relevant and updated data may still be needed. This naturally raises the question:
+\section{Problem Statement}
+\label{sec:probstate}
+When creating games the amount of time and funds spent are very limited. To ensure a high amount of quality code, the developer has to spent a lot of time writing trivial code and it will thrive the cost up. This naturally raises the question:
 
-\textit{How can a user be guaranteed to always have relevant information available, regardless of network connectivity?}\\
+\mbox{\parbox[b][2.5cm][c]{0.95\textwidth}{\textit{How can we develop a independent framework for creating simple multiplayer games - limiting the amount of time developers have to spent on writing code}}}
 
-\noindent In the following, we will present some possible scenarios, in which this problem can occur.
+The idea is simple, we want to creating framework for creating simple coordinate-based multiplayer shooter games. In order for the problem statement to be fulfilled, we raised some additional goals to the question asked above:
+
+\begin{itemize}
+\item The framework has to be as flexible as possible.
+\item The framework has to account for multiple instances of games with multiple users.
+\item The framework has to be easy to use. 
+\end{itemize}
+
 
 %Scenarios
 %\input{indhold/sce1}
