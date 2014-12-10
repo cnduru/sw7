@@ -1,1 +1,24 @@
 \section{Test}
+A number of tests were performed on the framework to inspect its response to stress, in particular with many simultaneously connected clients. The tests were black box tests\fixme{is this true?} and were devised to stress test all the APU calls visiable to the client.\\
+
+The following API calls were tested\fixme{skal vi have API navnene på i stedet for det der står i itemize nu?}
+\begin{itemize}
+\item Login
+\item Creation of new game
+\item Join game
+\item Leave game
+\item Update player location
+\item Edit player invites
+\item Invite player\fixme{findes den ikke godt nok?}
+\end{itemize}
+
+Internet problem?
+
+\subsection{Test Setup}
+The test setup consisted of a ``victim'' server, a ``supervisor'' computer and a ``spammer'' computer.\\
+
+The victim server was a computer running the framework and thus listening for connections on a socket. This machine was subjected to many simultaneous connections from fake clients.\\
+
+The spammer computer was the computer responsible for sending many API requests at the same time from multiple connections, simulating a large number of clients connecting and issuing API calls at the same time.\\
+
+The supervisor computer monitored the victim servers response time to various API calls while the spammer computer spammed the victim. The supervisor was needed to obtain the most reliable response times, since the spammer computer would likely be in a slowed state itself because of spawning many threads to attack the victim computer. It measured the response time of the victim server before and during the stress tests.\fixme{skal vi nævne at vi brugte rolling average?}
