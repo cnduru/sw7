@@ -22,3 +22,5 @@ The victim server was a computer running the framework and thus listening for co
 The spammer computer was the computer responsible for sending many API requests at the same time from multiple connections, simulating a large number of clients connecting and issuing API calls at the same time.\\
 
 The supervisor computer monitored the victim servers response time to various API calls while the spammer computer spammed the victim. The supervisor was needed to obtain the most reliable response times, since the spammer computer would likely be in a slowed state itself because of spawning many threads to attack the victim computer. It measured the response time of the victim server before and during the stress tests.\fixme{skal vi nævne at vi brugte rolling average?}
+
+\subsection{Test Results}
