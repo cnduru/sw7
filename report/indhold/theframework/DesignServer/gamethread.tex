@@ -1,0 +1,39 @@
+\subsection{Game thread-pool}
+The game thread-pool is a collection of active game thread-instances, uniquely identified by a game-Id.
+
+The game thread-pool is used as a handle to the game threads, and allows dynamic call to the desired game through method-parametrization. 
+
+\subsection{Game thread}\label{designgamethread}
+The game thread will handle requests from three parts of the server, Admin, Dispatcher, GlobalThreadTimer.
+
+The Admin will handle creation, initialization and launching of a new game thread. The request is sent from the client, along side a collection of settings for the game. These settings \fxfatal{indsæt ref til xml interface client til server} can be seen in the client to server interface. 
+
+The Dispatcher handles request to change the state of a game. These requests is sent by the client, some actively requested by the user and some passively by the client program. An active request could be to invite a player to a game. A passive request could be to update the players position in a game and receive changes to the board.
+
+The GlobalTimerThread handles events which changes the state of a game thread. The could be to spawn new objects on the board at a random time in an already active game. 
+
+
+\paragraph{Starting a game}
+A game thread will be initialized and started whenever a user requests to host a game. It is the Admin-class which handles the creation by receiving user-specified settings for hosting the game. These settings are then used to initialize the game and it will be created in the database which assigns a game-id to it for future identification.
+
+When the server initializes each setting, it calls a method within the game thread-class. These methods calls the database-controller to change the state of the game in the database. These settings are:
+\begin{itemize}
+\item Game-privacy (Public or private game)
+\item Number of teams
+\item Game start-time
+\item Game end-time (If any)
+\item Game-boundary NorthWest GPS-coordinate
+\item Game-boundary SouthEast GPS-coordinate
+\end{itemize}
+
+\paragraph{Updating a game}
+Updates to a game can be split into two groups. One group is specific changes to a game, like inviting a new player or firing a gun. Another group is updating a players position when moving around in the game.
+
+Updating a players position is trivial. The game thread receives a game-id, player-id and a new position. It calls the database-controller to store the new position in the database.
+
+When performing an action like firing a gun, the server will have to fetch the gunman's position and the victim's position. It will then calculate if the range of the fired weapon allows the victim to be hit. If the shot is successful it will return that to the player, if the shot is unsuccessful it will return that the victim is out of range. 
+
+All updates to change the state of a game will be in the game-thread class. This class will need to contain methods for all the in-game functionality. 
+
+\paragraph{Closing a game}
+When a game ends, the call will come from the timer thread. This will ask the game thread to clean up what is has stored in the database, and return a status message. The timer thread will then continue to close the game thread. 
