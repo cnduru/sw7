@@ -53,19 +53,3 @@ The following is a list of the different shrines and functionality. Shrines expi
 \item Factory - Provides each user on the team with 3 pistol bullets, 2 shotgun shells and 1 sniper bullet every half an hour.
 \end{itemize}
 
-\subsection{Different game scenarios}\label{subsec:game-scenarios}
-Since we created a server with functionality completely independent of the game implemented on top \fxnote{reference til separate frameworks fra server shit}, a lot of different games can be implemented. The way we have chosen is a pretty straight forward method with lots of different shrines and items.
-
-Something simple that could be implemented fast could be a multiplyer pac-man game. Each game would feature one pac-man and several different ghosts. The objective of the game is for the pac-man to collect all the pellets (which could easily be implemented the same way point objectives), and the fruit that makes pac-man chase the ghost would be crates. The server would get fed coordinates and possibly have a live feed of the map on the client side.
-Along those lines a multiplayer game like assassins creed could be emulated. A game happening in the Renaissance (with related weapons like crossbows and swords), where each player is a target of another player - and the winner would be guy to first kill his target.
-
-The item system in the database is extremely flexible - they could be weapons as in our example but fit for a certain era or time period. It is completely up to the developer to determine how the weapons are implemented. One could imagine having a theme like the wild west, where everyone only have six-shooters or a close combat game where people only have melee weapons. 
-
-Furthermore the relation between games and teams are 1-N, and this results in us being able to have co-op or free for all games. A king of the hill game seems like a suitable implementation of this, trying to hold shrines while everyone is out to kill you. This means that it would be possible to implement several other popular game-modes like last man standing or deathmatch where you respawn after being killed.
-
-It is also possible to refrain completely from fighting games. An example could be a gather game similar to Googles Ingress, where you get points for having control of certain areas of the map.
-
-There is a lot of different games that easily could be implemented on top of our framework.
-
-
-
