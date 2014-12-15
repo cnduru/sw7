@@ -1,42 +1,49 @@
 \section{Test}
-A number of tests were performed on the framework to inspect its response to stress, in particular with many simultaneously connected clients. The tests were black box tests\fixme{is this true?} and were devised to stress test all the API calls visiable to the client.\\
+The aim of the project is to create a good base on which multiplayer games can easily be created. It is therefore desirable that the server is stable and able to handle a decent number of games at the same time without significant response time. More specifically we want a single server to be able to host as many games as possible without surpassing an average response time of 1000ms. Additionally we want to locate possible bottlenecks in the code, by recording the run time of each API call. This can be tested using a black-box testing.
 
-The following API calls were tested\fixme{skal vi have API navnene på i stedet for det der står i itemize nu?}
-\begin{itemize}
-\item Login
-\item Creation of new game
-\item Join game
-\item Leave game
-\item Update player location
-\item Edit player invites
-\item Invite player\fixme{findes den ikke godt nok?}
-\end{itemize}
+The Python scripts used to test the server can be found in the folder named Test with the rest of the source code.\fixme{ret i forhold til hvor det ligger}
 
-The source code of the Python script used to spam the victim server can be found in\fixme{ref til appendix}.
 \subsection{Test Setup}
 \label{sec:testSetup}
-The test setup consisted of a ``victim'' server, a ``supervisor'' computer and a ``spammer'' computer.\\
+The test is done by simulating users through Python scripts: One for simulating a number of active games with the purpose of creating some artificial server load, and one for making single API calls and collecting data.
 
-The victim server was a computer running the framework and thus listening for connections on a socket. This machine was subjected to many simultaneous connections from fake clients.\\
+The first script creates server load by spawning a thread per desired game. Each thread creates a game, makes relevant API calls for the duration of the test, and finally it deletes the game. Each thread simulates very busy games with 2 API calls per second. 
 
-The spammer computer was the computer responsible for sending many API requests at the same time from multiple connections, simulating a large number of clients connecting and issuing API calls at the same time.\\
+The other script makes a single API call a number\fxfatal{what number?} of times, collects the run time for each call and finally calculates the mean and standard deviation. Because the goal is to stay on a run time under 1000ms, the number of calls taking more than this is also recorded.
 
-The supervisor computer monitored the victim servers response time to various API calls while the spammer computer spammed the victim. The supervisor was needed to obtain the most reliable response times, since the spammer computer would likely be in a slowed state itself because of spawning many threads to attack the victim computer. It measured the response time of the victim server before and during the stress tests.\fixme{skal vi nævne at vi brugte rolling average?}\\
+Each script is run on seperate computers, to be sure the extra processing power needed to handle the game threats does not influence the test results. 
+
+%The following API calls are used in the test:
+%\begin{itemize}
+%\item Login
+%\item Create game
+%\item Delete game
+%\item Join game
+%\item Leave game
+%\item Change location
+%\item Invite player
+%\item List public games
+%\item List joined games
+%\item Get game info
+%\item Shoot
+%\end{itemize}
 
 \subsection{Test Results}
-In table \cref{tab:testRes} the results from the test are shown\fixme{Just latency test?}. Each test was perfomed with half a second interval.
+<Results and things we learned from the tests.>
+%In table \cref{tab:testRes} the results from the test are shown\fixme{Just latency test?}. Each test was perfomed with half a second interval.
 
-\subsubsection{Test}
-\subsubsection{Login}
-\subsubsection{Game creation}
-\subsubsection{Join game}
-\subsubsection{Leave game}
-\subsubsection{Update player location}
-\subsubsection{Edit player invites}
-\subsubsection{Invite player}
-\subsubsection{title}
+%\subsubsection{Test}
+%\subsubsection{Login}
+%\subsubsection{Game creation}
+%\subsubsection{Join game}
+%\subsubsection{Leave game}
+%\subsubsection{Update player location}
+%\subsubsection{Edit player invites}
+%\subsubsection{Invite player}
+%\subsubsection{title}
 
-\subsection{Sources of Error}
-There are a number of factors that possibly contributed to the accuracy of the tests.\\
 
-One of the main sources of error is found in the nature\fixme{Overkill at sige nature?} of the internet. The tests were performed on a small local network and connections were sometimes closed because there was a fallout in the network. The test script, which the spammer, described in \cref{sec:testSetup}, then reconnected as soon as possible to maintain the highest possible amount of stress on the victim server. 
+%\subsection{Sources of Error}
+%There are a number of factors that possibly affect to the accuracy of the tests.\\
+
+%One of the main sources of error is found in the nature\fixme{Overkill at sige nature?} of the internet. The tests were performed on a small local network and connections were sometimes closed because there was a fallout in the network. The test script, which the spammer, described in \cref{sec:testSetup}, then reconnected as soon as possible to maintain the highest possible amount of stress on the victim server. 
