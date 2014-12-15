@@ -1,14 +1,9 @@
 \subsection{Implementation of Admin}
 \label{sec:adminimpl}
+The Admin class handles requests from the client that can be classified as not game specific. 
 
-%DESIGN
-The Admin class contains methods that handles server-requests prior to the game thread. These are methods like \textit{CreateGame}, \textit{CloseGame}, and \textit{VerifiyAccount} that handles the verification of a login-request. 
+The \textit{VerifiyAccount} handles login-requests from the client.
 
-A \textit{CreateGame} call cannot be send to a game thread, obviously because the game thread has not yet been created. Therefore this method will create a game from the model-class \textit{Game}, store it in the database with the provided settings, start a thread on the server for it to run on, and add it to the gamethread-pool for later use. 
-
-A \textit{CloseGame} call will ask the database to clean up what exist for a Game provided an id, and proceed to stop the thread running the game and remove it from the gamethread-pool.
-
-%IMPL
-
+The \textit{CreateGame} handles requests to start a new game.
 
 The \textit{CloseGame} call has been implement by changing the visibility of the game, hereby not removing it but making it not appear when searching for the game. 
