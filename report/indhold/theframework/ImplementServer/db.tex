@@ -1,0 +1,12 @@
+\section{Implementation of Datalayer}
+\label{chap:dbImplementation}
+As described in \Cref{sec:server} the game treads and the admin class relies on a Data Mapper to handle communication with the database. The Data Mapper is based on the data mapper patten \fxwarning{ref WE bog}. The benefit of this is that the logic layer does not have to worry about the underlying database structure.
+ 
+\paragraph{Data Mapper}
+Handles reads, inserts, updates and deletes from the database. This is achieved by the exchange of domain objects between the logic layer and the data layer.
+An example of this could be the admin class requesting a list of all active games, the method for this takes no parameters, performs a lookup in game table, convert the result to domains objects and returns them as a list.
+Another example could be a request for the a games a particular Account is taking part in. With the account id as parameter, the mapper performs lookups in the game and player (plays relation in the ER diagram \Cref{fig:ER}) tables, then converts it to a list of games.
+
+
+\paragraph{Domain Object} 
+In order to represent the database in the logic layer we use Domain Objects. The domain objects are split into classes corresponding to tables in the database, though they do contain optional information based on foreign keys to other table. Ex. a player domain object can contain information from the status effect table as well as the player table.
