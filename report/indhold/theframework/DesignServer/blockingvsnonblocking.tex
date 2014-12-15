@@ -1,7 +1,7 @@
 % ms-syn-asyn - http://msdn.microsoft.com/en-us/library/windows/desktop/aa365683(v=vs.85).aspx
 
 
-\section{Synchronous vs. Asynchronous I/O}
+\subsection{Synchronous vs. Asynchronous I/O}
 %What is B/NB I/O?
 I/O can be handled either synchronously or asynchronously. A synchronous I/O operation is blocking, i.e., the thread that executes the current job is in a waiting state, where it does not compute anything, until it gets a response. An asynchronous I/O operation is non-blocking and therefore allows the thread to execute another job while waiting for the I/O operation to finish. This is illustrated on \Cref{fig:syncasync}. The figure does not show the overhead caused by using asynchronous I/O, which causes this to not always be the best solution, especially if there are many short I/O operations \cite{ms-syn-asyn}.
 

@@ -1,4 +1,4 @@
-\subsection{Implementation of XML builder}
+\subsection{XML builder}
 \label{sec:xmlbuilderimpl}
 To construct responds to the incoming requests from clients, a component was needed to construct an XML formatted string. The result is the \textit{XMLbuilder} class. This class has one or two respond-messages per method that can be called on the server. Some has just got a single respond-messages, because the only thing that changes is the parameters. Others have two respond-messages because they can out different results, e.g. a login-request can either be successful or fail. 
 
