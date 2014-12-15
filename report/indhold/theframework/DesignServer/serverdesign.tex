@@ -10,8 +10,12 @@ This layer represent the business logic of the server application. The Admin mod
 \paragraph{Data Layer}
 Is the database representation in the model using the data mapper pattern\fxwarning{WE book ref}. The gateway is responsible for querying and updating the database and mapping the tables to objects used in the game logic and administration.
 
-\fxwarning{fix bad import}
-\input{billeder/serverArchitecture}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{billeder/Server.tex}  
+  \caption{Architecture of server displaying the branching of an incoming connection}
+  \label{fig:serverarchitecture}
+\end{figure}
 
 \subsection{Database}
 In this project a database was needed to keep track of all information related to users and games they are playing. The database is designed with flexibility in mind which means that the logic behind a game is responsible for interpreting the data in the database. \figref{fig:ER}\fxwarning{export new ER diagram} shows the entity relation diagram for the database without attributes. The database is structured as follows:
