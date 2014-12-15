@@ -1,8 +1,14 @@
 \subsection{Database}\label{subsec:databasedesign}
 
-\input{billeder/Server.tex}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{billeder/serverdiagram.png}  
+  \caption{Diagram displaying the server structure}
+  \label{fig:erdiagram}
+\end{figure}
 
-In this project a database was needed to keep track of all information related to users and games they are playing. The database is designed with flexibility in mind which means that the logic behind a game is responsible for interpreting the data in the database. \figref{fig:ER}\fxwarning{export new ER diagram} shows the entity relation diagram for the database without attributes. The database is structured as follows:
+
+In this project a database was needed to keep track of all information related to users and games they are playing. The database is designed with flexibility in mind which means that the logic behind a game is responsible for interpreting the data in the database. \figref{fig:erdiagram} shows the entity relation diagram for the database without attributes. The database is structured as follows:
 
 \paragraph{Account}
 The Account entity represent the users in the system. An account can host games represented by the host relation and take part in games represented as owning a player in a particular game.
