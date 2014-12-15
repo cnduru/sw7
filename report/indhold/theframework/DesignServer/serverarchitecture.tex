@@ -1,10 +1,10 @@
 \subsection{Server Architecture}\label{sec:server}
-The server is structured in three layers a dispatcher service, some domain objects and a database layer. 
+The server is structured in three layers a dispatcher service, some Logic layer and a database layer. 
 
 \paragraph{Dispatcher Service}
 The dispatcher is a service responsible for handling the communication with the client. It consist of a asynchronous IO and the dispatcher itself. Communication is done by an XML interface where requests from the client is verified by the dispatcher and passed to either the Admin module or a Game Thread depending on the message. 
 
-\paragraph{Domain Objects}
+\paragraph{Logic Layer}
 This layer represent the business logic of the server application. The Admin module handles user creation, user login and game creation and is general for all game implementations. Game Thread is where specific game logic is implemented and its implementation will vary depending on the type of game. Event Timer is a general module handling events specified to happen at certain times. The game threads are responsible for creating events for themselves. The event timer will then notify a game thread at the specified time.
 
 \paragraph{Data Layer}
