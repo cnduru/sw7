@@ -5,7 +5,7 @@ The framework is designed to be running multiple instances of the game thread, o
 
 The framework has been designed to dynamically dispatch method calls to the game thread. It is important that the communication uses the exact, and case sensitive game thread method-name. Otherwise the game thread will not be able to handle the provided request and the framework will fail. 
 
-The game thread encapsulates all game-specific logic and is a manageable workstation for the user of the framework. It has the option to use the database through the \textit{Data Layer}, will framework provided methods. Additionally it has the option to create game events that can be queued into the \textit{
+The game thread encapsulates all game-specific logic and is a manageable workstation for the user of the framework. It has the option to use the database through the \textit{Data Layer}, will framework provided methods. Additionally it has the option to create game events that can be queued into the \textit{Event Timer}, which will perform changes in the game at specified timestamps. An example could be to spawn new objects.
 
 The game thread will contain a constructor for creating new games, which will be called from the Admin class. This constructor will have to handle optional settings upon game-creation. The game thread will then call the database to update the state of the game created in the Admin class called before the game thread, which updates according to the settings. Everything hereafter is optional and depends on the game one wants to develop. When a game ends, a call to clean up the database will be initialised and the thread running the ending game will be stopped.
 
