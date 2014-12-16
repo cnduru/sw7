@@ -1,13 +1,23 @@
-\section{Server Design}
+\section{Server Architecture}
+\label{sec:server}
 With the prototyping of \Cref{sec:game} we can design a server architecture to accommodate the described features. In this section we will first describe the overall architecture then look at the individual components.
 
 
+The server is structured in three layers a dispatcher service, a Logic layer and a database layer. \fxwarning{WHY?}
+
 
 \input{indhold/theframework/DesignServer/serverarchitecture}
+
+\section{Dispatcher Service}
 \input{indhold/theframework/DesignServer/blockingvsnonblocking}
 \input{indhold/theframework/DesignServer/dispatcher}
+
+
+\section{Logic Layer}
 \input{indhold/theframework/DesignServer/admin}
 \input{indhold/theframework/DesignServer/gamethread}
 \input{indhold/theframework/DesignServer/eventtimer}
+
+\section{Data Layer}
 \input{indhold/theframework/DesignServer/databasedesign}
 
