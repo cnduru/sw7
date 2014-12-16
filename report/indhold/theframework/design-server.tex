@@ -9,15 +9,24 @@ The server is structured in three layers: a dispatcher service, a logic layer an
 \input{indhold/theframework/DesignServer/serverarchitecture}
 
 \section{Dispatcher Service}
+This layer is responsible for communication with the between client and server, this responsibility is divided between an IO module and a Dispatcher. In this section we will first examine Synchronous and Asynchronous IO in order to determine which is best suited for this framework and then the Dispatcher which forwards messages to the logic layer. We decided on Asynchronous IO and base our design on \cite{?} 	 %http://msdn.microsoft.com/en-us/library/fx6588te%28v=vs.110%29.aspx
+
+
+
 \input{indhold/theframework/DesignServer/blockingvsnonblocking}
 \input{indhold/theframework/DesignServer/dispatcher}
 
 
 \section{Logic Layer}
+This layer parses and reacts to the messages received from the dispatcher. The logic layer interact with the game threads and is responsible for 
+
 \input{indhold/theframework/DesignServer/admin}
-\input{indhold/theframework/DesignServer/gamethread}
 \input{indhold/theframework/DesignServer/eventtimer}
 
+\section{Game Block}
+\input{indhold/theframework/DesignServer/gamethread}
 \section{Data Layer}
 \input{indhold/theframework/DesignServer/databasedesign}
 
+
+\section{Design}
