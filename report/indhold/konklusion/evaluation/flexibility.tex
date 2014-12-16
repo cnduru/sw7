@@ -1,15 +1,16 @@
 \subsection{Flexibility}\label{subsec:flex}
-Since we decided create a server with functionality completely independent of the game implemented on top \fxnote{reference til separate frameworks fra server shit}, a lot of different games can be implemented. 
 
-Something simple that could be implemented fast could be a multiplyer pac-man game. Each game would feature one pac-man and several different ghosts. The objective of the game is for the pac-man to collect all the pellets (which could easily be implemented the same way point objectives), and the fruit that makes pac-man chase the ghost would be crates. The server would get fed coordinates and possibly have a live feed of the map on the client side.
-Along those lines a multiplayer game like assassins creed could be emulated. A game happening in the Renaissance (with related weapons like crossbows and swords), where each player is a target of another player - and the winner would be guy to first kill his target.
+We had a goal to make the framework as flexible as we could and since we decided create a server with functionality completely independent of the game implemented on top, a lot of different games can be implemented. 
 
-The item system in the database is extremely flexible - they could be weapons as in our example but fit for a certain era or time period. It is completely up to the developer to determine how the weapons are implemented. One could imagine having a theme like the wild west, where everyone only have six-shooters or a close combat game where people only have melee weapons. 
+Something simple that could be implemented fast could be a multiplyer pac-man game. Each game would feature one pac-man and several different ghosts. The objective of the game would be for the pac-man to collect all the pellets (which could easily be implemented the same way point objectives in our game), and the fruit that makes pac-man chase the ghost would be crates. The server would get fed coordinates and possibly have a live feed of the map on the client side.
 
-Furthermore the relation between games and teams are 1-N, and this results in us being able to have co-op or free for all games. A king of the hill game seems like a suitable implementation of this, trying to hold shrines while everyone is out to kill you. This means that it would be possible to implement several other popular game-modes like last man standing or deathmatch where you respawn after being killed.
+Along the same lines, a multiplayer game like assassins creed could be emulated. A game happening in the Renaissance (with related weapons like crossbows and swords), where each player is a target of another player - and the winner would be guy to first kill his target. The possibility to have an arbitrary number of teams with an arbitrary number of players gives a lot of flexibility to game modes. This means it is possible to have co-op or free for all games. A king of the hill game seems like a suitable implementation of this, trying to hold shrines while everyone is out to kill you. This means that it would be possible to implement several other popular game-modes like last man standing or deathmatch where you respawn after being killed.
 
-It is also possible to refrain completely from fighting games. An example could be a gather game similar to Googles Ingress, where you get points for having control of certain areas of the map.
+The item system in the database is extremely flexible - they could be weapons as in our example but fit for a certain era or time period. It is completely up to the developer to determine what weapons are implemented. One could imagine having a theme like the wild west, where everyone only have six-shooters or a close combat game where people only have melee weapons. 
 
-There is a lot of different games that easily could be implemented on top of our framework.
+It is also possible to refrain completely from fighting games. An example could be a gather game similar to Googles Ingress, where you get points for having control of certain areas of the map. Because items are as flexible as they are, items could be something like speed boosts or faster caption of points. It is even possible to have one big game between all of the players and make it possible to join while a game is already active.
+
+There is a lot of different games that easily could be implemented on top of our framework. Since almost everything in the database is nullable it is possible to completely ignore certain attributes of entities. The database can in principle function as a multiplayer database only and only contain games and the players attached to it.
+
 
 
