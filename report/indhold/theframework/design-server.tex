@@ -18,12 +18,14 @@ This layer is responsible for communication with the between client and server, 
 
 
 \section{Logic Layer}
-This layer parses and reacts to the messages received from the dispatcher. The logic layer interact with the game threads and is responsible for 
+This layer parses and reacts to the messages received from the dispatcher. The logic layer interact with the game threads and consists of the Event Timer module which is callable from the game threads and can do a callback at a later time. The layer also contains the Admin module responsible for creating game threads as well as non-game specifics such as authenticating logins.
 
 \input{indhold/theframework/DesignServer/admin}
 \input{indhold/theframework/DesignServer/eventtimer}
 
 \section{Game Block}
+
+
 \input{indhold/theframework/DesignServer/gamethread}
 \section{Data Layer}
 \input{indhold/theframework/DesignServer/databasedesign}
