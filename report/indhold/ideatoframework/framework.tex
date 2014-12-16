@@ -1,0 +1,12 @@
+\section{What the fuck is a framework and why does it even}
+
+A framework is a software solution which gives set of functionality much like a library, but with some small differences. It provides functionality, sometimes independently other times as part of a larger platform, for development of software solutions, applications and products.
+Generally the flow of control is dictated by the framework and not the user. A framework often have a default behavior, in case an important functionality isn't overridden by the user. The most important detail is however that the framework code should never be modifiable by the user but the user rather built upon the framework. \cite{framework}
+
+A framework can include other smaller parts such as other programs, tools, APIs or other libraries. A framework is often confused with an API or a library. A framework is a group of classes, interfaces and other pre-compiled code, while APIs are the public front of a framework and libraries are specifically made for a single purpose. A well-made framework hides most of the code in assemblies and dlls and only shows the above mentioned classes and interfaces. An example of a framework for an online store could be handling the general flow, it would be handling tasks as `purchase item', `checkout' or `browse warehouse'.
+
+APIs are made for interaction between applications and with a specific purpose e.g. Google Maps API. Google Maps is built with an underlying predefined set of functions and the API is the manual for the user's application in order to interact with Maps. It is often described as the information necessary to use classes and sets of classes.
+
+A library can be described as a very specific framework. It is a collection of implementations with a well-defined interface - a strict set of functions for a specific purpose. An example here could be the timer library in C\#, it provides a simple timer class with a lot of different properties, methods and events.
+
+As we do not have existing application to built an API for, we need to create the underlying functionality for an application. This means we have to create either a framework or a library, but seeing we have to create wide spectrum of functionality the optimal would be creating a framework. It would be possible to create an API on top of the framework we intend to create but it will not be the focus of this report.
