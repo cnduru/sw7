@@ -1,4 +1,4 @@
-\subsection{Event Timer}
+\subsubsection{Event Timer}
 \label{sec:eventtimerimpl}
 The Event Timer is executed exactly once when the server starts up. It runs in its own thread. When it is run it enters an infinite loop. For every iteration in the loop, the Event Timer\fixme{hvordan skal casing være på de her navne?} first checks whether there are no Game Events in a list which contains all queued events for all games.\\
 
@@ -9,5 +9,5 @@ After the game event has been triggered, it is removed from the list of untrigge
 The Event Timer also proves a method called AddGameEvent()\fixme{format}, which allows addition of new game events to its internal list of untriggered game events.\\
 
 The Event Timer class is a part of the framework, whereas the Game Event, described in \cref{subsec:geventImpl} is not.
-\subsection{Game Event}\label{subsec:geventImpl}
+\subsubsection{Game Event}\label{subsec:geventImpl}
 The Game Event is implemented as a ``container'' for information about game events. It has a constructor which initializes variables gameId, eventType and triggerTimestamp. The rest of the class simply consists of getters for these variables. The getters are used by the Event Timer, described in \cref{subsec:eventtimerimpl}. Instances of the Game Event class are game specific, which means that each of the instantiated game events belong to a game, and are therefore not part of the framework\fixme{burde det her afsnit rykkes til client impl?}.

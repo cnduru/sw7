@@ -1,4 +1,4 @@
-\subsection{XML handler}
+\subsubsection{XML handler}
 \label{sec:xmlhandlerimpl}
 To handle incoming requests from clients, a component was needed to read and translate the XML formatted strings that communication is based on. This resulted in the \textit{XMLhandler} class. The class has many methods, but is simple to use. Given any valid string of XML, the XML handler returns an object of correct type given the value stored in the XML. An example is the method \textit{GetGameIdFromXML}, it will extract an integer with a value specified in the XML. The method call will convert this from string to integer and return it. 
 
