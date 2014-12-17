@@ -1,9 +1,8 @@
 \subsubsection{Admin}
 \label{sec:adminimpl}
-The Admin class handles requests from the client that can be classified as not game specific. \fixme{kunne være brugbart med metoder lidt mere beskrevet e.g. create game, hvordan handler den det? og hvad betyder handler her?}
+The Admin class handles requests from the client that can be classified as not game specific. These are requests for something like:
+\begin{itemize}
+\item \textit{VerifiyAccount} handles login-requests from the client.
+\item \textit{CreateGame} handles requests to start a new game
+\end{itemize}
 
-The \textit{VerifiyAccount} handles login-requests from the client.
-
-The \textit{CreateGame} handles requests to start a new game.
-
-The \textit{CloseGame} call has been implement by changing the visibility of the game, hereby not removing it but making it not appear when searching for the game. 

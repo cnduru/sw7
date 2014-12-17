@@ -1,9 +1,6 @@
-% ms-syn-asyn - http://msdn.microsoft.com/en-us/library/windows/desktop/aa365683(v=vs.85).aspx
-
-
-\subsubsection{Synchronous vs. Asynchronous I/O}
+\subsubsection{Synchronous vs. Asynchronous I/O}\fxfatal{Be critical! Mangler der noget for forståelsen i dette afsnit?}
 %What is B/NB I/O?
-I/O can be handled either synchronously or asynchronously. A synchronous I/O operation is blocking, i.e., the thread that executes the current job is in a waiting state, where it does not compute anything, until it gets a response. An asynchronous I/O operation is non-blocking and therefore allows the thread to execute another job while waiting for the I/O operation to finish. This is illustrated on \Cref{fig:syncasync}. The figure does not show the overhead caused by using asynchronous I/O, which causes this to not always be the best solution, especially if there are many short I/O operations \cite{ms-syn-asyn}.
+I/O can be handled either synchronously or asynchronously. A synchronous I/O operation is blocking, i.e., the thread that executes the current job is in a waiting state, where it does not compute anything, until it gets a response. An asynchronous I/O operation is non-blocking and therefore allows the thread to execute another job while waiting for the I/O operation to finish. This is illustrated on \Cref{fig:syncasync}. The figure does not show the overhead caused by using asynchronous I/O, which causes this to not be the best solution for all application, especially if there are many short I/O operations \cite{ms-syn-asyn}.
 
 \begin{figure}[H]
   \centering
@@ -12,9 +9,9 @@ I/O can be handled either synchronously or asynchronously. A synchronous I/O ope
   \label{fig:syncasync}
 \end{figure}
 
-This is the case for one or few users, but if there are many users at once they either have to wait in queue for previous I/O operations to finish, or each operation has to be executed in it's own thread, which would potentially result in many active threads, requiring a lot of memory. As pointed out by \citet{amir} it is worth noting that an asynchronous call that results in a synchronous operation causes the application to block, and therefore should be considered during implementation.
+This is the case for one or few users, but if there are many users at once they either have to wait in queue for previous I/O operations to finish, or each operation has to be executed in its own thread, which would potentially result in many active threads, requiring a lot of memory.  As pointed out by \citet{amir} it is worth noting that an asynchronous call that results in a synchronous operation causes the application to block, and therefore should be considered during implementation.
 
-To enable the server to scale better, the I/O is implemented asynchronously. When the server receives an input, it is asynchronously sent to a dispatcher which sends it to the correct place; this is described in \Cref{sec:server}. Because of the many parts that have to interact, it is hard to determine if this implementation behaves as expected without testing it, but changing to a synchronous implementation would not be very expensive, as the asynchronous code is very similar to the synchronous code thanks to .NET's \texttt{Async} and \texttt{Await} keywords \cite{ms-asyn}. Making both implementations available at the same time, and letting the user choose which one to use, would also be relatively easy to do, but it adds some extra complexity to the code, as changes in one implementation would require similar changes in the other.
+To allow the server to receive inputs from many clients at once, the client/server communication is implemented asynchronously. When the server receives an input, it is asynchronously sent to a dispatcher which sends it to the correct game thread; this is described in \Cref{sec:server}. Because of the many parts that have to interact, it is hard to determine if this implementation behaves as expected without testing it, but changing to a synchronous implementation would not be very expensive, as the asynchronous code is very similar to the synchronous code thanks to .NET's \texttt{Async} and \texttt{Await} keywords \cite{ms-asyn}. As different games may have different requirements. Some games may have different requirements in regards to client/server communication, and making both implementations available at the same time, letting the user choose which one to use, would be relatively easy to do, but adds some extra complexity to the code, as changes in one implementation would require similar changes in the other. 
 %What are the advantages and disadvantages?
 
 %Which alternative(s) is/are there?
