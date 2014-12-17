@@ -1,8 +1,8 @@
 \subsection{Dispatcher}
 \label{chap:dispImplementation}
-The Dispatcher has been implemented as conditional checking for methods. It will statically look for the methods that exist in the Admin class, and call the right method accordingly. The Dispatcher searching for a method call by checking if the XML contains each method name.
+The Dispatcher has been implemented as conditional checking for methods. It will statically look for the methods that exist in the Admin class, and call the right method accordingly. The Dispatcher searches for a method call by checking if the XML contains each method name.
 
-The Dispatcher handles all calls to the game thread by looking for the XML-tag \textit{<GameId>}. Throughout the framework, this XML-tag signals that the current client requests should be handed over to the game thread. The Dispatcher then dynamically invokes the correct method on the specified game thread, provided by the \textit{<GameId>} in the XML. 
+The Dispatcher handles all calls to the game thread by looking for the XML-tag \textit{<GameId>}. Throughout the framework, this XML-tag signals that the current clients requests should be handed over to the game thread\fixme{Dette skal skrives meget tydeligere, uklart hvordan det bliver handled}. The Dispatcher then dynamically invokes the correct method on the specified game thread, provided by the \textit{<GameId>} in the XML. 
 
 \begin{lstlisting}[caption={Dynamically invoking methods on game threads}, language=C]
 //Locate method call in XML sent from client

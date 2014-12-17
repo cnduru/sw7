@@ -1,13 +1,14 @@
-\subsection{Event Timer}
+\subsubsection{Event Timer}
 \label{sec:eventtimerimpl}
-The Event Timer is executed exactly once when the server starts up. It runs in its own thread. When it is run it enters an infinite loop. For every iteration in the loop, the Event Timer\fixme{hvordan skal casing være på de her navne?} first checks whether there are no Game Events in a list which contains all queued events for all games.\\
+The Event Timer is executed exactly once when the server starts up. It runs in its own thread and when it is run, it enters an infinite loop. For every iteration in the loop, the Event Timer checks whether there are no Game Events in the list containing globally queued events.\fixme{formulering og indhold!}\\
 
-Every game event\fixme{ref?} has a timestamp affiliated with it. If there are game events in the list that have not yet been triggered, the Event Timer then iterates through the list of untriggered game events, and for each, executes the GetTriggerTimestamp()\fixme{formatting} and compares it to the current time. If the timestamp value is less than the current time (in other words, the event trigger threshold has been passed), the game event is triggered by running the RunGameEvent()\fixme{formatting} method each game event has.\\
+All game events has a timestamp affiliated with it. the Event Timer iterates through the list of game events, and checks the timestamp, executes the \textit{GetTriggerTimestamp()} and compares it to the current time. If the timestamp value is less than the current time (in other words, the event trigger threshold has been passed), the game event is triggered by running the \textit{RunGameEvent()} method each game event has.\\
 
-After the game event has been triggered, it is removed from the list of untriggered game events. This is done using the native RemoveAt()\fixme{format} method which are a part of lists in C\#. If this fails, an ArgumentOutOfRangeException\fixme{formatting} is thrown, since RemoveAt()\fixme{format} requires a valid index as a parameter to know which element to remove from a list.\\
+After the game event has been triggered, it is removed from the list of game events. This is done using the native \textit{RemoveAt()} method which are a part of lists in C\#. If this fails, an \textit{ArgumentOutOfRangeException} is thrown, since \textit{RemoveAt()} requires a valid index as a parameter to know which element to remove from a list.\fixme{ret trivielt? skal det med?}\\
 
-The Event Timer also proves a method called AddGameEvent()\fixme{format}, which allows addition of new game events to its internal list of untriggered game events.\\
+The Event Timer also proves a method called \textit{AddGameEvent()}, which allows addition of new game events to its internal list of game events.\\
 
 The Event Timer class is a part of the framework, whereas the Game Event, described in \cref{subsec:geventImpl} is not.
-\subsection{Game Event}\label{subsec:geventImpl}
-The Game Event is implemented as a ``container'' for information about game events. It has a constructor which initializes variables gameId, eventType and triggerTimestamp. The rest of the class simply consists of getters for these variables. The getters are used by the Event Timer, described in \cref{subsec:eventtimerimpl}. Instances of the Game Event class are game specific, which means that each of the instantiated game events belong to a game, and are therefore not part of the framework\fixme{burde det her afsnit rykkes til client impl?}.
+
+\subsubsection{Game Event}\label{subsec:geventImpl}
+The Game Event is implemented as a ``container'' for information about game events. It has a constructor which initializes variables gameId, eventType and triggerTimestamp. The rest of the class simply consists of getters for these variables. The getters are used by the Event Timer, described in \cref{subsec:eventtimerimpl}. Instances of the Game Event class are game specific, which means that each of the instantiated game events belong to a game, and are therefore not part of the framework.

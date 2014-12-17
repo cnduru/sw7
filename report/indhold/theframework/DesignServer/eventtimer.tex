@@ -1,4 +1,4 @@
-\subsection{Game Events}\label{subsec:gameEvents}
+\subsubsection{Game Events}\label{subsec:gameEvents}
 Game events are a data type which contains details about an event which should happen at some point in time in the game. It contains information about
 
 \begin{itemize}
@@ -7,7 +7,7 @@ Game events are a data type which contains details about an event which should h
 \item The time at which the event should be triggered
 \end{itemize}
 
-Game events are triggered by the Event Timer described in \cref{subsec:eventtimerdesign}
+Game events are triggered by the Event Timer.
 
-\subsection{Event Timer}\label{subsec:eventtimerdesign}
-The event timer will run on a single thread, and handle executing game events at a time specified in the game event. All unexecuted game events are stored in a list. The event could be to place a shrine somewhere on the map. After an event has been triggered, it is removed from the list of game events. Game events are described in \cref{subsec:gameEvents}.
+\subsubsection{Event Timer}\label{subsec:eventtimerdesign}
+The event timer will run on a single thread, and handle executing game events at a time specified in the game event. All unexecuted game events are stored in a list. The event could be to place a shrine somewhere on the map. After an event has been triggered, it is removed from the list of game events.

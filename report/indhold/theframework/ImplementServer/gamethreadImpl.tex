@@ -1,4 +1,4 @@
-\subsection{Game Thread}
+\subsubsection{Game Thread}
 \label{sec:gamethreadimpl}
 Each active game is running as an instance of the game thread class on a separate thread on the server. The thread will not perform any actions on its own, but sits idle until another part of the server initializes a call to it. The parts of the server which can perform a call to a game thread are Admin, Dispatcher, GlobalTimerThread. Further explanation can be seen in design of game thread\ref{designgamethread}. 
 
