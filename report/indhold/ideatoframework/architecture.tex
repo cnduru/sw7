@@ -2,3 +2,17 @@
 %
 % A description of the entire architecture. server, client and which part takes care of what (initially and optimally).
 %
+
+% intro
+The project as physical entities, is separated into two parts. A server and a client part.\\
+
+% client
+The client (the player) does not perform any computation. Instead it generates information meaningful to the server based on what the player does, which is then sent to the server. The player could for example shoot someone in the game, and would then send data to the server requesting it to record this action. \\
+
+% server
+The server receives data from the client which describes what has happened on the client-side. The server then determines the correct action to perform. This could be logging the client in after receiving a login request from the client in the data, or the client wishing to join a game.\\
+
+% reasoning
+The reasons for separating the project into server and player entities are multiple. One is that it would be power consuming for a player, playing a game on a mobile device developed with the framework, to host a game for their friends. The mobile phone would have to perform all computations for the game they are playing and host the database. When a single central server is used for these computations, the server can be located at some location and be plugged into the power grid, thus averting the power supply issue. Also, the players woud have to know the address of the device hosting the game to join, unless some mechanism was devised to handle this.\\
+
+Another advantage to splitting the project up in two parts, instead of creating it as one application, is portability. Since the client itself is thin, because the heavy operations are performed on the server, it requires less work to port the client to other platforms. Less code and complexity on the client-side equals less work to rewrite the client-side if porting the client to a different platform.
