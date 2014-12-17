@@ -3,8 +3,7 @@ When considering how to design a software solution it can be a good idea to cons
 
 Below is a description of patterns found usable in this project. Patterns are split into two, one with patterns applicable in the client application, another with patterns applicable on the server program.
 
-\subsection{Patterns in the Application}
-\label{subsec:patterns}
+\subsection{Patterns in the Application} \label{subsec:patterns}
 \textbf{Lazy Initialization} pattern is designed to save/delay use of resources by postponing initialization for as long as possible (Until right before it is needed).The Android application in this project does not perform many heavy operations, but it should always be remembered that the application is running on a phone with limitations in the form of battery life. As a mobile device, battery life is a valuable resource - a requirement for a mobile device is the ability to keep power for an extended period of time. As such, most initializations of objects has been pushed back to the point where they are required along with operations on data \cite{lazyInit}.
 
 \textbf{Adapter} pattern is a simple idea, but can be used in many contexts. It stems from the problem of wanting two incompatible interfaces to work together. The pattern solution is to use adapters to facilitate a common ground for the two interfaces. In Android, adapters are used to construct lists, grids and more. The adapters help link lists of items together with a visualization, using a given layout to inflate and a set of items. It will then provide a view of each item, effectively providing a user-friendly way of using/viewing the data. The biggest problem with this pattern is that it requires writing code for delegating the requests to the adapted objects \cite{adappat}. For this project adapters have been used to create and display clickable lists.

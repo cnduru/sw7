@@ -1,5 +1,4 @@
-\subsection{Application Architecture}
-\label{sec:application_architecture}
+\subsection{Application Architecture} \label{sec:application_architecture}
 While the application is only designed as proof of concept, the structure of it is not random. Given that it acts as an example implementation, it is designed to demonstrate how the server functionality can be used for an application. The game is coded as an Android application. As many other types of software, there is different versions of Android, and when deciding which version to target, one should usually consider that anyone using older versions will be excluded from using the application. Given that the developed application is not meant for release, this concern has been disregarded. As such the application is developed for a somewhat newer version of Android called "Jelly bean" (Version 4.1 or alternatively API level 16). This version was announced on June 27th, 2012\cite{jelly-bean}. This potentially allows for easier programming as a newer version can mean both additional features and bugfixes.
 
 The application is built using standard Android activities, described in \ref{subsec:components}. These activities represent one screen layout each - For example a login screen or a lobby screen for a game. The exact coupling and flow of these activities can be seen in figure \ref{fig:appstructure}. The idea is that after login, the user has a menu from where the application branches out, providing the option to create, join or resume a game.
@@ -12,8 +11,7 @@ What is not shown in the figure is that the user can still use the Android "back
 \label{fig:appstructure}
 \end{figure}
 
-\subsection{Coupling with Server Functionality}
-\label{subsec:server-coupling}
+\subsection{Coupling with Server Functionality} \label{subsec:server-coupling}
 With the exception of the Menu, all activities require communication with the server. To facilitate this easily, some classes are used - The \textit{Client} and a series of classes for handling XML. These are described in the paragraphs below. For a visualization of the structure in which they are used, see figure \ref{fig:appcommunication}.
 
 \paragraph{Client}
