@@ -1,5 +1,6 @@
 \subsubsection{Admin}\label{subsec:admindesign}
-The Admin class contains methods that handles server-requests prior to the game thread. The Admin class handles administrative calls and contains methods for each call. These are methods like \textit{CreateGame}, and \textit{VerifiyAccount} that handles the verification of a login-request. 
+The Admin module is responsible for handling server-requests not related to specifict Game Threads. The Admin module handles administrative calls like creating new games or accounts as well as verifying login requests. 
 
-A \textit{CreateGame} call cannot be send to a game thread, obviously because the game thread has not yet been created. Therefore this method will create a game from a model-class \textit{Game}, store it in the database with the provided settings, start a thread on the server for it to run on. 
+%impl?
+%A \textit{CreateGame} call cannot be send to a game thread, obviously because the game thread has not yet been created. Therefore this method will create a game from a model-class \textit{Game}, store it in the database with the provided settings, start a thread on the server for it to run on. 
 
