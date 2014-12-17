@@ -1,5 +1,5 @@
-\section{Interfaces}
-\label{sec:interfaces}
+\subsection{Interfaces}
+\label{subsec:interfaces}
 %INTRO:
 %Server and client both consist of several small parts that all need to communicate.
 %Examples: user->client, client->server, game->db...
@@ -8,7 +8,7 @@
 
 We have decided that all information between the server and the client are shared in the form of XML. We have chosen to do so because of the diversity XML provides, and its interoperability with a wide variety of software. This fits well within the theme of creating a customizable framework for creating games. Furthermore XML is a widely used transport format for data, and thus many people know how to use it. %we feel that XML is somewhat of a standard for sharing - and many people already know how to make use of it.
 
-\subsection{Client and Server correspondence}
+\subsubsection{Client and Server correspondence}
 
 The idea behind the XML output is to create tags for each different kind of data. We have different kinds of data to sent depending on which activity we take on the client side. An example of this could be the login activity on the client side, this requires sending some username and a password for confirmation on the server side.\fixme{dette har brug for en factoring}
 
