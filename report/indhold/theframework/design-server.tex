@@ -13,25 +13,29 @@ This layer is responsible for communication with the between client and server, 
 
 The Asynchronous IO unit is handling socket creation and TCP/IP communication, a rather trivial part of a client-server interface when you disregard the communication type. The need for out Dispatcher unit has been revealed by building our game. We need a way to dispatch requests from the client to the right component and method on the server. We dispatch to either Admin or Game Thread, by reading the request from the client and determine what type of request it is and continue accordingly. We decided to build the Dispatcher to encapsulate reading and analysing the requests from the client. Alternatively, we could have handed everything to Admin and incorporated the Dispatcher's functionality into the Admin, but we did not consider this a well structured framework.
 
-
 \input{indhold/theframework/DesignServer/blockingvsnonblocking}
 \input{indhold/theframework/DesignServer/dispatcher}
 
 %Logic Layer
 \subsection{Logic Layer}
-This layer parses and reacts to the messages received from the dispatcher. The logic layer interact with the Game Threads and consists of the Event Timer module which is callable from the Game Threads and can do a callback at a later time. The layer also contains the Admin module responsible for creating game threads as well as non-game specifics such as authenticating logins.
+This layer parses and reacts to the messages received from the Dispatcher. The logic layer interact with the Game Threads and consists of the Event Timer module which is callable from the Game Threads and can do a callback at a later time. The layer also contains the Admin module responsible for creating Game threads as well as non-game specifics such as authenticating logins.
 
-
+The framework allows the user to use services like logging a client in through an XML-based interface. Services in the framework requires the user to implement proper XML-based communication on the client-side. A discussion about the use of XML seen in \fixme{ref til johans afsnit om valg af XML}. The framework also offers to handle Game Events, timed to occur after a specified time-stamp. This service used by creating a Game Event in the Game Thread being build by the user of the framework. We decided to build the Event Timer this way to encapsulate time-handling, and make a generic module that can be used for many different events. The user of the framework can specify what should happen for a given event in the Game Event class.
 
 \input{indhold/theframework/DesignServer/admin}
 \input{indhold/theframework/DesignServer/eventtimer}
 
 %Game Block
 \subsection{Game Block}
+This is the workstation of the user of the framework. This block interacts with all the layers in the framework and makes use of the functionality provided by the framework. This class encapsulates all game-specific logic.
 
+This is where we designed the framework to allow the user to develop a game. The framework has several rules the user has to follow when using the framework. They are explained for each module in the design. An example is the XML communication from client to server.
+ 
 \input{indhold/theframework/DesignServer/gamethread}
 
 %Data Layer
 \subsection{Data Layer}
+The data layer provides the user of the framework with the functionality to store data for later use. It is developed in a location-based game-format, as it was developed alongside our game.
+
 \input{indhold/theframework/DesignServer/databasedesign}
 
