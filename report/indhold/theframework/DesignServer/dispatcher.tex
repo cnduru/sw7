@@ -1,5 +1,5 @@
 \subsubsection{Dispatcher}\label{subsec:dispatcherdesign}
-The Dispatcher is a central component in the framework. It is placed in the \textit{Dispatcher Service} in the architecture, and is the first receiving to interpret a request sent by a client. The dispatcher simply dispatches a call to the appropriate method with the appropriate parameters when it receives XML data. In order to do this, it reads as little XML as possible to extract information to decide the appropriate destination and the right method to call. It attaches the entire XML as parameter to the method call.
+The Dispatcher is a central component in the framework. It is placed in the \textit{Dispatcher Service} in the architecture, and is the first receiving to interpret a request sent by a client. The dispatcher simply dispatches a call to the appropriate method with the appropriate parameters when it receives XML data. In order to do this, it reads the root tag of the XML to extract information to decide the appropriate destination and the right method to call. It attaches the entire XML as parameter to the method call.
 
 The Dispatcher looks for the specified method call in the XML to hand it over to the Admin class. This is static calling of methods with attached XML. The Dispatcher waits for the Admin to return an XML, which it returns to the Async IO.
 
