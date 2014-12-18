@@ -1,5 +1,5 @@
 \section{Test}
-The aim of the project is to create a good base on which multiplayer games can easily be created. It is therefore desirable that the server is stable and able to handle a decent number of games at the same time without significant response time. More specifically we want a single server to be able to host as many games as possible without surpassing an average response time of 1000ms. Additionally we want to locate possible bottlenecks in the code, by recording the run time of each API call. This can be tested using a black-box testing.
+The aim of the project is to create a good base on which multiplayer games can easily be created. It is therefore desirable that the server is stable and able to handle a decent number of games at the same time without significant response time. More specifically we want a single server to be able to host as many games as possible without surpassing an average response time of 0.5 seconds. Additionally we want to locate possible bottlenecks in the code, by recording the run time of each API call. This can be tested using a black-box testing.
 
 The Python scripts used to test the server can be found in the folder named Test with the rest of the source code.\fixme{ret i forhold til hvor det ligger}
 
@@ -9,7 +9,7 @@ The test is done by simulating users through Python scripts: One for simulating 
 
 The first script creates server load by spawning a thread per desired game. Each thread creates a game, makes relevant API calls for the duration of the test, and finally it deletes the game. Each thread simulates very busy games with 2 API calls per second. 
 
-The other script makes a single API call a number\fxfatal{what number?} of times, collects the run time for each call and finally calculates the mean and standard deviation. Because the goal is to stay on a run time under 1000ms, the number of calls taking more than this is also recorded.
+The other script makes a single API call a number\fxfatal{what number?} of times, collects the run time for each call and finally calculates the mean and standard deviation. Because the goal is to stay on a run time under 0.5 seconds, the number of calls taking more than this is also recorded.
 
 Each script is run on seperate computers, to be sure the extra processing power needed to handle the game threats does not influence the test results. 
 
@@ -28,8 +28,28 @@ Each script is run on seperate computers, to be sure the extra processing power 
 %\item Shoot
 %\end{itemize}
 
-\subsection{Test Results}
-<Results and things we learned from the tests.>
+\subsection{Analysis of Test Results}
+The tests have now been concluded and the results can be analyzed. show the results and the raw data is available along with the source code in the Test folder.\\
+
+After running the script the first time, the script failed, and we were given a timeout exception. We then modified the test to record these timeouts and continue the test, but the exact source of the exception was not located. The script was run 1000 times with each API call, and the calls that timed out were not included in the final test results.\\
+
+% % % tables
+\Cref{tab:unloadgraph} shows the mean of the response time for each API call. As can be seen the mean is mostly the same for all API calls except for the Get joined games call. We suspect this is because of the way data is stored in the database. This response time could be lessened by routinely deleting old games from the table containing created games. This is currently not done but the overall the mean is below the threshold of 0.5 seconds.\\
+
+The table also shows the number of calls exceeding the maximum allowed response time of 0.5 seconds. Also here Get joined games has the highest response time, but for all the API calls only 1-3 out of the thousand calls exceeded the limit. Looking at the raw data, shows that these calls sometimes took 4-6 seconds, and in rare cases completely timed out. It is difficult to say where exactly the problem arises, but due to the low amount of slow or timed out calls, we argue that these results are satisfactory in regards to the timeout threshold of 0.5 seconds.\\
+
+\Cref{tab:loadgraph} shows the results of the test when the server was handling 100 busy games. By trial and error this was found to be the maximum amount of games the server could consistently handle without timing out completely.\\
+
+As can be seen, the mean response for each API call has increased from the response times in \Cref{tab:unloadgraph}. This is mainly because of the increased load on the server from the 100 busy games running concurrently. \Cref{tab:loadgraph} also shows the Get joined games API call as the API call with the largest response time. This confirms that it was not just by chance \Cref{tab:unloadgraph} showed the same.\\
+
+Not unexpectedly, it can be seen that there are more API calls which exceed the timeout threshold of 0.5 seconds. An interesting observation, however, is the fact that less API calls timed out, as one would expect the case to be the opposite with the increased load on the server. This could indicate that there is an error somewhere in the server or the network connection that sometimes encountered.\\
+
+
+
+% % % graph
+
+
+
 %In table \cref{tab:testRes} the results from the test are shown\fixme{Just latency test?}. Each test was perfomed with half a second interval.
 
 \begin{figure}[H]
@@ -41,11 +61,11 @@ Each script is run on seperate computers, to be sure the extra processing power 
 
 \renewcommand{\arraystretch}{1.2}
 \begin{table}
-\label{tab:1}
 \caption{Test with no load}
+\label{tab:unloadgraph}
 \centering
 \begin{tabular}{|l|>{\raggedleft\arraybackslash}p{5em}|>{\raggedleft\arraybackslash}p{5em}|>{\raggedleft\arraybackslash}p{5em}|>{\raggedleft\arraybackslash}p{5em}|}
-	\hline  & \multicolumn{1}{p{5em}|}{Mean (sec)} & \multicolumn{1}{p{5em}|}{\# over limit} & \multicolumn{1}{p{5em}|}{\# timed out} \\ 
+	\hline  & \multicolumn{1}{p{5em}|}{Mean of response time (sec)} & \multicolumn{1}{p{5em}|}{Number over limit} & \multicolumn{1}{p{5em}|}{Number timed out} \\ 
 	\hline Login  & 0.0135 & 3 & 0 \\ 
 	\hline Get public games  & 0.0118 & 2 & 0 \\ 
 	\hline Get joined games  & 0.0565 & 10 & 1 \\ 
@@ -62,11 +82,11 @@ Each script is run on seperate computers, to be sure the extra processing power 
 \end{table}
 
 \begin{table}
-\label{tab:2}
 \caption{Test with load}
+\label{tab:loadgraph}
 \centering
 \begin{tabular}{|l|>{\raggedleft\arraybackslash}p{5em}|>{\raggedleft\arraybackslash}p{5em}|>{\raggedleft\arraybackslash}p{5em}|>{\raggedleft\arraybackslash}p{5em}|}
-	\hline  & \multicolumn{1}{p{5em}|}{Mean} & \multicolumn{1}{p{5em}|}{\# over limit} & \multicolumn{1}{p{5em}|}{\# timed out} \\ 
+	\hline  & \multicolumn{1}{p{5em}|}{Mean of response time(sec)} & \multicolumn{1}{p{5em}|}{Number over limit} & \multicolumn{1}{p{5em}|}{Number timed out} \\ 
 	\hline Login  & 0.3676 & 262 & 1 \\ 
 	\hline Get public games  & 0.4825 & 328 & 0 \\ 
 	\hline Get joined games  & 0.4959 & 353 & 0 \\ 

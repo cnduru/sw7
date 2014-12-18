@@ -1,20 +1,17 @@
 \subsection{Noget server.}
+This section will contains possible improvements upon the current implementation. Some general improvements such as more are 
 
-\subsubsection{Multithreading}
-threads gives problems for Admin/dispatcher when creating or closing games
+\subsubsection{Multi Threading}
+In our implementation of the framework we have used threads and this has lead to a some unresolved issues. An example of this is in the dispatcher, see \Cref{sec:dispImplementation}, where threads gives problems when creating or closing games. This could be solved by restricting access to \texttt{GameThreadPool} which is currently shared amount all worker threads.
 
-too many threads
+Another issue is that there is no set limit how many games can run at the same time. Eventually exceptions will be thrown when continuing to generate game threads.
 
 
 \subsubsection{Blurriness Between Client and Sever}
-in the implementation of the game not all method where implemented generically. An example is the callable method \texttt{Shoot} and the class weapon. 
+In the implementation of the game not all method where implemented generically. An example is the callable method \texttt{Shoot} and the class weapon. Methods like \texttt{Shoot} should have been implemented with a \texttt{UseItem} call according to our design.
 
-\subsubsection{error handling}
-there is none
+\subsubsection{Error Handling}
+Error handling is sparse in some areas 
 
-\subsubsection{separation}
-dll api etc, is this a good framework
-etv. move to eval!
-
-\subsubsection{trusty server}
+\subsubsection{Trusty Server}
 everything the client sends is legal
