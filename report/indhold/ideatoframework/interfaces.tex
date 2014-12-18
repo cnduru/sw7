@@ -1,19 +1,16 @@
-\section{Interfaces}
-\label{subsec:interfaces}
+\section{Interfaces} \label{subsec:interfaces}
 %INTRO:
 %Server and client both consist of several small parts that all need to communicate.
 %Examples: user->client, client->server, game->db...
 
-We have decided that all information between the server and the client are shared in the form of XML. We have chosen to do so because of the diversity XML provides, and its interoperability with a wide variety of software. This fits well within the theme of creating a customizable framework for creating games. Furthermore XML is a widely used transport format for data, and thus many people know how to use it. 
+We have decided that all information between the server and the client are shared in the form of XML. This was chosen because of the diversity XML provides, and its interoperability with a wide variety of software. This fits well within the theme of creating a flexible framework for creating games. Furthermore, XML is a widely used transport format for data, and thus many people know how to use it.
 
-The idea behind XML is to create tags for each different type of parameter. XML often fits well for sending information for games since it is flexible and extensible, this means there is no limitations to what the tags are and how many there are. Furthermore the tree structure of XML helps with encapsulations and scalability - as it is easy to emulate games in XML code. XML furthermore have schema support meaning it has the ability to specify the formats of a document, and for the receiver to check whether they are matching the format. \cite{xml}
+The idea behind XML is to create tags for each different type of parameter. XML fits well for sending information for games since it is flexible and extensible, which means there is no limitations to what the tags are and how many there are. Furthermore, the tree structure of XML helps with encapsulations and scalability. XML has schema support, meaning it has the ability to specify the formats of a document, and for the receiver to check whether they are matching the format. \cite{xml}
 
-An alternative to XML is JSON which is in many ways superior to XML as it is more compact and have better distinction between data types. However it lacks the schema and namespace support. XML is the dominant format for things like web services and file formats.
+An alternative to XML is JSON which is in many ways superior to XML as it is more compact and have better distinction between data types. However, it lacks schema and namespace support. XML is as of 2011 still the dominant format for APIs.\cite{xml-json}
 
-XML provides a convenient way to deserialize the input - making it an appropriate solution for small constant interactions like the ones we need. There are many other alternatives to XML, but we feel that it is a simple interaction without extraordinarily complicated needs - which makes the simplicity of XML a great trait for us.
+The structure of the XML format provides a convenient way to deserialize the input, making it an appropriate solution for small constant interactions like the ones needed for this project. Given that XML is simple to use, and that it provides what is needed, it was chosen for the project. Furthermore, most of the project group has prior experience with XML.
 
-When implementing a game with many different actions, it is needed to have different kinds of data to sent depending on which activity thats taken. The idea we have, is to have individual methods for each different scenario rather than creating a generic XML converter because we want to enforce the right data structures and types. 
-
-The information is structured around what the server needs for authentication - so what the client sends is of course built around what the server requires. Since the frameworks functionality is a fixed size, this requires a fixed amount of methods on the client side.
+When implementing a game, each different interaction leads to different messages between the client and the server. The result of this, is that we create individual methods for each different interaction, rather than creating a generic XML converter. This is because we want to enforce the right data structures and types, and was one of the main arguments for considering JSON.
 
 For the same reasons mentioned above and for the sake of consistency the client expects XML on roughly the same form. This means the server side has to send information as well.
