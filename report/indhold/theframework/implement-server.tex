@@ -1,12 +1,8 @@
 %Dispatcher service
 \subsection{Dispatcher Service}
-The Dispatcher Service handles communication with the client through TCP/IP. We chose this protocol because it ensures data are correct upon arrival at the server, it is offered as library in the C\# programming language that we use to program our framework and we have minor experience using it from previous projects. 
+The Dispatcher Service handles communication with the client through TCP/IP. We chose this protocol because it ensures data arrives to the server in the correct order and without loss. Additionally it is available as a library in the C\# programming language, which is used to program the server-side of the framework, and we have some experience using it from previous projects. 
 
-Just like TCP/IP is offered in our programming language, there is also a library for Asynchronous IO. 
-
-We wanted the implementation of our Dispatcher Service to be quick because we wanted to work on more specific framework flexibility and functionality. Network communication has been done in many other applications and we did not want to spend a long time on something that can be copied from others and does not differ far from other implementations. 
-
-
+Just like TCP/IP is offered in our programming language, there is also a library for asynchronous I/O. 
 
 \input{indhold/theframework/ImplementServer/asyncImpl}
 \input{indhold/theframework/ImplementServer/dispatcherImpl}
