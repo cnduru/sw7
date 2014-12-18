@@ -8,7 +8,7 @@ The project as physical entities, is separated into two parts. A server and a cl
 
 % client
 The client acts as a graphical interface for the player, allowing game interaction.
-The client (the player) does however not perform game specific computations. Rather than changing the state of the game itself, it sends requests to the server, which will compute results based on these. The client then decides what to do with the results. The player could for example interact with someone else in the game - This would make the client send data to the server requesting it to handle this action, notifying the involved players of the result.
+The client does however not perform game specific computations. Rather than changing the state of the game itself, it sends requests to the server, which will compute results based on these. The client then decides what to do with the results. The player could for example interact with someone else in the game - This would make the client send data to the server requesting it to handle this action, notifying the involved players of the result.
 
 % server
 The server is where all data regarding players and games are stored. For all games, it keeps track of the current state they are in. It also acts as the center of communication, receiving information based on the actions requested from clients. The server then calculates the result of the action, returning a proper answer to the client and possibly changing the state of a game.
