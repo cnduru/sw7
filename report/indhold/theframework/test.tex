@@ -1,60 +1,73 @@
-\section{Test}
-The aim of the project is to create a good base on which multiplayer games can easily be created. It is therefore desirable that the server is stable and able to handle a decent number of games at the same time without significant response time. More specifically we want a single server to be able to host as many games as possible without surpassing an average response time of 0.5 seconds. Additionally we want to locate possible bottlenecks in the code, by recording the run time of each API call. This can be tested using a black-box testing.
+\section{Test} \label{sec:test}
+Given that the aim of the project is to create a good code-base on which multiplayer games can easily be implemented, it is desirable that the server is stable and able to handle a large number of concurrent games without significant response time. More specifically we want a single server to be able to host as many games as possible without surpassing an average response time of 0.5 seconds. This time limit was chosen based on guidelines from Jakob Nielsen's ''Usability Engineering´´.\cite{response-time} The book states one second is the limit for which a user does not feel interrupted in using an application. We have then decided to be more strict, not wanting to get near this limit - This is why the target is 0.5 seconds.
 
-The Python scripts used to test the server can be found in the folder named Test with the rest of the source code.\fixme{ret i forhold til hvor det ligger}
+Additionally we want to locate possible bottlenecks in the code, by recording the run time of each API call. This can be tested using black-box testing.
 
-\subsection{Test Setup}
-\label{sec:testSetup}
-The test is done by simulating users through Python scripts: One for simulating a number of active games with the purpose of creating some artificial server load, and one for making single API calls and collecting data.
+The tests were written as Python scripts, and can be found in the folder named Test with the rest of the source code.\fxfatal{ret i forhold til hvor det ligger} The test results can also be found \fxfatal{somewhere}.
 
-The first script creates server load by spawning a thread per desired game. Each thread creates a game, makes relevant API calls for the duration of the test, and finally it deletes the game. Each thread simulates very busy games with 2 API calls per second. 
+\subsection{Test Setup} \label{sec:testSetup}
+The test is done by simulating active users through two scripts: one for simulating a number of active games, with the purpose of creating some artificial server load, and one for making single requests and collecting data.
 
-The other script makes a single API call a number\fxfatal{what number?} of times, collects the run time for each call and finally calculates the mean and standard deviation. Because the goal is to stay on a run time under 0.5 seconds, the number of calls taking more than this is also recorded.
+The script designed to create server load, does so by requesting a thread on the server per desired game. Each thread creates an instance of a game, sends requests for game actions for the duration of the test and finally closes the game. Each thread ends up simulating very busy games with two requests per second. 
 
-Each script is run on seperate computers, to be sure the extra processing power needed to handle the game threats does not influence the test results. 
+The other script makes a single request a number\fxfatal{what number?} of times, collects the response delay for each request and finally calculates the mean and standard deviation.
 
-%The following API calls are used in the test:
-%\begin{itemize}
-%\item Login
-%\item Create game
-%\item Delete game
-%\item Join game
-%\item Leave game
-%\item Change location
-%\item Invite player
-%\item List public games
-%\item List joined games
-%\item Get game info
-%\item Shoot
-%\end{itemize}
+Each script is run from separate computers, to be sure a bottleneck does not occur on the simulated client-side.
+
+The server used was a HP Compaq 8200 Elite MT PC with the following setup.
+
+\begin{itemize}
+\item 64 bit Windows 7 Enterprise (Build 7601)
+\item Intel Core i7-2600
+\item 8 GB DDR3 RAM
+\end{itemize}
 
 \subsection{Analysis of Test Results}
-The tests have now been concluded and the results can be analyzed. show the results and the raw data is available along with the source code in the Test folder.\\
+After running the script the first time, a timeout exception was eventually thrown. We then modified the test to record these timeouts and continue the test, but the exact source of the exception was not located. On every iteration of the script that logs response times, the following requests were sent to the server.
 
-After running the script the first time, the script failed, and we were given a timeout exception. We then modified the test to record these timeouts and continue the test, but the exact source of the exception was not located. The script was run 1000 times with each API call, and the calls that timed out were not included in the final test results.\\
+\begin{itemize}
+\item Login
+\item Create game
+\item Delete game
+\item Join game
+\item Leave game
+\item Change location
+\item Invite player
+\item List public games
+\item List joined games
+\item Get game info
+\item Shoot
+\end{itemize}
+
+The script was iterated 1000 times, and the requests that timed out were not included in the analysis of the final test results.
 
 % % % tables
-\Cref{tab:unloadgraph} shows the mean of the response time for each API call. As can be seen the mean is mostly the same for all API calls except for the Get joined games call. We suspect this is because of the way data is stored in the database. This response time could be lessened by routinely deleting old games from the table containing created games. This is currently not done but the overall the mean is below the threshold of 0.5 seconds.\\
+\Cref{tab:unloadgraph} shows the mean of response times for each request, when the server is not stressed. As seen in the table, the means are similar and well under 0.5 seconds for all requests, except for the \textit{Get joined games} call. We suspect this is because of the way data is stored in the database. This response time could be lessened by routinely deleting old games from the table containing created games.
 
-The table also shows the number of calls exceeding the maximum allowed response time of 0.5 seconds. Also here Get joined games has the highest response time, but for all the API calls only 1-3 out of the thousand calls exceeded the limit. Looking at the raw data, shows that these calls sometimes took 4-6 seconds, and in rare cases completely timed out. It is difficult to say where exactly the problem arises, but due to the low amount of slow or timed out calls, we argue that these results are satisfactory in regards to the timeout threshold of 0.5 seconds.\\
+The table also shows the number of requests exceeding the maximum allowed response time of 0.5 seconds. Again, \textit{Get joined games} is with 10 failures the most unreliable entry, but for all other requests only 1-3 out of the thousand calls exceeded the limit. Looking at the raw data, it can be seen the requests sometimes had a 4-6 second delay, and in rare cases completely timed out. It is difficult to pinpoint where the problem arises, but due to the low amount of slow or timed out requests, we argue that these results are satisfactory in regards to the delay threshold of 0.5 seconds.
 
-\Cref{tab:loadgraph} shows the results of the test when the server was handling 100 busy games. By trial and error this was found to be the maximum amount of games the server could consistently handle without timing out completely.\\
+\Cref{tab:loadgraph} shows the results of the test when the server was handling 100 busy games concurrently. By trial and error this was found to be the maximum amount of games the server could consistently handle without timing out completely, resulting in no requests returning.
 
-As can be seen, the mean response for each API call has increased from the response times in \Cref{tab:unloadgraph}. This is mainly because of the increased load on the server from the 100 busy games running concurrently. \Cref{tab:loadgraph} also shows the Get joined games API call as the API call with the largest response time. This confirms that it was not just by chance \Cref{tab:unloadgraph} showed the same.\\
+The mean response for each request has increased from the response times in \Cref{tab:unloadgraph}. This is attributed to the increased load on the server from the 100 busy games running concurrently. \Cref{tab:loadgraph} also shows the \textit{Get joined games} request as having the worst mean response time, getting very close to the 0.5 second limit.
 
-Not unexpectedly, it can be seen that there are more API calls which exceed the timeout threshold of 0.5 seconds. An interesting observation, however, is the fact that less API calls timed out, as one would expect the case to be the opposite with the increased load on the server. This could indicate that there is an error somewhere in the server or the network connection that sometimes encountered.\\
+Not unexpectedly, it can be seen that there are more requests which exceed the delay threshold of 0.5 seconds. There are however less timeouts, indicating that the issue could be external to the server, for example a network issue.
 
 % % % graph
-Looking on the graph on \Cref{fig:loadgraph} a general pattern can be seen. For the first approximately 90 runs of the 11 API calls the response time is reasonably low. Given the heavy load on the server many are still over the threshold of 0.5 seconds, but that is to be expected, and it is positive that the response time is relatively stable until then. After that several big spikes can be observed, followed closely by period of very good response time. This is especially noticable around run 160 and 710. A couple of things could be the cause of this, and most likely it shows the server getting overloaded and dropping some connections, followed by good performance until the connections are reestablished.\\
+Looking at the graph in \Cref{fig:loadgraph}, a general pattern can be seen. For the first approximately 90 iterations the response time is low. With the heavy load on the server many requests have a delay of over 0.5 seconds. After these first iterations, several delay spikes can be observed, followed closely by periods of quick response times. This is especially noticeable around iteration 160 and 710. One possible reason is the server getting overloaded and dropping some connections, followed by good performance until the connections are reestablished.
 
-A similar graph for the results of the test without load does not show anything noteworthy - most calls are very fast, and there are a few spikes, but there is no observable pattern. Generally, we would expect better results with fewer active games, but it is difficult to predict how many it would realistically run, as it depends a lot on the activity of each game.\\\\
+The results of the test without load does not show anything noteworthy - most requests have little delay, and small random spikes occur, but there is no observable pattern. Generally, we would expect better results with fewer active games.
+
+It would be difficult to predict how many games the server could realistically run, as it depends a lot on the activity of each game.
 
 % % % sources of error
-We discovered some issues with the test, which could have affected the results.\\
-First of all, both the server, the spammer and the computer measuring the response time of the server were connected through a local mobile hotspot. This network was not the most stable, and it could therefore have affected the response times in a way that would not happen if they had been connected to a more stable network.\\
-Another issue is that the test was run through an IDE. This could have affected the response times because the IDE may have caused some performance overhead. This could be remedied by running the test outside of the IDE.\\
-The computers used for testing, except for the server, were in use while the tests were running. This could possible have affected the response times as well. A remedy for this could be to simply have dedicated computers running nothing except only what they are supposed to.\\
-Lastly, there was only one computer attempting to overload the server at one time. This means that if that computer was affected in a way which affected its performance I/O wise, all of the overload on the server is reduced. This could also have affected the test results since the server would not have been continually overloaded, as was intended. It could be remedied by having multiple computers attempting to overload the server at the same time, since it is unlikely all of them would have performance problems at the same time.
+We discovered some issues with the test, which could have affected the results.
+First of all, both the server, spammer and computer measuring the response time of the server were connected through a local mobile hotspot. This network was not the most stable, and could therefore have affected the response times in a way that would not happen if they had been connected to a more stable network.
+
+Another issue is that the test was run through an IDE. This could have affected the response times because the IDE may have caused some performance overhead. This could be remedied by running the test outside of an IDE.
+
+The computers used for testing, except for the server, were in use while the tests were running. This could possible have affected the response times as well. A remedy for this could be to simply have dedicated computers running nothing except the test.
+
+Lastly, there was only one computer attempting to overload the server at any given time. If this computer was affected in a way which impacted its performance, the overload on the server is reduced. This could also have affected the test results since the server would not have been continuously stressed, as intended. The test would be affected less by having multiple computers attempting to stress the server at the same time, since it is unlikely all of them would have performance problems at the same time.
 
 %In table \cref{tab:testRes} the results from the test are shown\fixme{Just latency test?}. Each test was perfomed with half a second interval.
 
