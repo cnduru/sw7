@@ -1,6 +1,5 @@
 \section{Model View Controller}
-%Describe why an architectural pattern is important
-
+\label{sec:mvc}
 %We chose MVC - describe it
 
 %What do we gain from MVC? What are the tradeoffs?
@@ -8,3 +7,14 @@
 %Other options? Model-View-Presenter, Observer, Multitier architecture?
 
 %Is it possible to change the architecture?
+
+MVC is very widespread, and aside from often being misunderstood, there are also many subtle variations of it. To make sure we are on the same page, here is a quick outline of how we understand it:
+
+\paragraph{Model} The model is a representation of “some information about the domain” \cite{fowler}. It can be implemented in different ways, but in essence it consists of data, business logic (e.g. validation or calculations), and some sort of interface to reach said data and logic from the other layers. 
+
+\paragraph{View/Controller} \fxwarning{ref til dette i client design}This is the presentation layer. The view displays the content in the UI, but cannot/is not allowed to manipulate it. This job is done by the controller, which will take user inputs, manipulate the mode, and update the view accordingly. Because it is closely linked to the view, it is normal to have one controller per view.\\
+
+For each layer, there are a number of possible design patterns that can be applied. If you work with a framework these often already implement some sort of design pattern, but if you are working with plain MVC these patterns are important to structure your code if it has to live up to the quality requirements of a long term / large scale application.
+
+
+
