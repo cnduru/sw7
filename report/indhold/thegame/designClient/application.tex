@@ -12,10 +12,10 @@ What is not shown in the figure is that the user can still use the Android "back
 \end{figure}
 
 \subsection{Coupling with Server Functionality} \label{subsec:server-coupling}
-With the exception of the Menu, all activities require communication with the server. To facilitate this easily, some classes are used - The \textit{Client} and a series of classes for handling XML. These are described in the paragraphs below. For a visualization of the structure in which they are used, see figure \ref{fig:appcommunication}.
+With the exception of the Menu, all activities require communication with the server. To facilitate this communication easily, several classes are used for this in the application, among those the \textit{Client} and a series of classes for handling XML. These are described in the paragraphs below. For a visualization of the structure in which they are used, see figure \ref{fig:appcommunication}.
 
 \paragraph{Client}
-The client class is responsible for all communication with the server. The client is thin and therefore, its implementation is very simple. The advantage this has, is that it makes it easier to port the client to other platforms since the less code the client contains, the less coding is required to rewrite during a port.\\
+The Client class is responsible for all communication with the server. The Client is thin and therefore, its implementation is very simple. The advantage of this is easier porting of the client to other platforms since the less code the client contains, the less coding is required to rewrite during a port.\\
 
 It connects to the server upon being instantiated and is then able to send and receive strings using methods called \textit{send} and \textit{read}. For any desired server functionality, the programmer should use the send method. Given that the string sent is readable by the server, this will prompt the server to perform the requested action, and send a response to the client. To get this answer, the programmer should use the read method to retrieve the returned XML string.
 
