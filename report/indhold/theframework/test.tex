@@ -8,9 +8,9 @@ The tests were written as Python scripts, and can be found in the folder named T
 \subsection{Test Setup} \label{sec:testSetup}
 The test is done by simulating active users through two scripts: one for simulating a number of active games, with the purpose of creating some artificial server load, and one for making single requests and collecting data.
 
-The script designed to create server load, does so by requesting a thread on the server per desired game. Each thread creates an instance of a game, sends requests for game actions for the duration of the test and finally closes the game. Each thread ends up simulating very busy games with two requests per second. 
+The script designed to create server load, does so by requesting a thread on the server per desired game. Each thread creates an instance of a game, sends requests for game actions for the duration of the test and finally closes the game. Each thread ends up simulating very busy games with two requests per second.
 
-The other script makes a single request a number\fxfatal{what number?} of times, collects the response delay for each request and finally calculates the mean and standard deviation.
+The other script makes a single request 1000 times, collects the response delay for each request and finally calculates the mean and standard deviation.
 
 Each script is run from separate computers, to be sure a bottleneck does not occur on the simulated client-side.
 
