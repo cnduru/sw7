@@ -1,8 +1,8 @@
 \subsubsection{Data Mapper} \label{sec:dbImplementation}
-Handles reads, inserts, updates and deletes from the database. This is achieved by the exchange of domain objects between the logic layer and the data layer.
-An example of this could be the Admin class requesting a list of all active games, the method for this takes no parameters, performs a lookup in game table, convert the result to domains objects and returns them as a list.
-Another example could be a request for the a games a particular Account is taking part in. With the account id as parameter, the mapper performs lookups in the game and player (plays relation in the ER diagram \Cref{fig:ER}) tables, then converts it to a list of games.
+The Data Mapper handles reads, inserts, updates and deletes from the database. This is achieved by the exchange of domain objects between the Logic Layer and the Data Layer.
+An example of this could be the Admin class requesting a list of all active games. The method for this takes no parameters, performs a lookup in game table, converts the result to domain objects and returns them as a list.\\
+Another example could be a request for the games a particular Account is taking part in. With the account id as a parameter, the Data Mapper performs lookups in the game and player (plays relation in the ER diagram \Cref{fig:erdiagram}) tables, and then converts it to a list of games.
 
 
 \subsubsection{Domain Object} 
-In order to represent the database in the logic layer we use Domain Objects. The domain objects are split into classes corresponding to tables in the database, though they do contain optional information based on foreign keys to other tables. An example could be a player domain object can contain information from the status effect table as well as the player table.
+In order to represent the database in the Logic Layer we use Domain Objects. The Domain Objects are split into classes corresponding to tables in the database, though they do contain optional information based on foreign keys to other tables. An example could be a player Domain Object can contain information from the status effect table as well as the player table.
