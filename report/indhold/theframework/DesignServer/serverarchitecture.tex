@@ -1,11 +1,11 @@
 \paragraph{Dispatcher Service}
-The dispatcher is a service responsible for handling the communication with the client. It consists of an asynchronous I/ and the dispatcher itself. Communication is done by an XML interface where requests from the client is verified by the dispatcher and passed to either the Admin module or a Game Thread depending on the message. 
+The dispatcher is a service responsible for handling the communication with the client. It consists of an asynchronous I/O and the dispatcher itself. Communication is done by an XML interface where requests from the client is verified by the dispatcher and passed to either the Admin module or a Game Thread depending on the message. 
 
 \paragraph{Logic Layer}
-This layer represents the business logic of the server application. The Admin module handles user creation, user login and game creation and is general for all game implementations. Game Thread is where specific game logic is implemented and its implementation will vary depending on the type of game. Event Timer is a general module handling events specified to happen at certain times. The game threads are responsible for creating events for themselves. The event timer will then notify a game thread at the specified time. As illustrated in \Cref{fig:serverarch}, game threads are not a part of the framework. Game threads are interchangeable and does not effect the framework directly. This increases the versatility of the game threads, since a developer can create his own game threads and plug them into the framework.
+This layer represents the business logic of the server application. The Admin module handles user creation, user login and game creation and is general for all game implementations. Game Thread is where specific game logic is implemented and its implementation will vary depending on the type of game. Event Timer is a general module handling events specified to happen at certain times. The game threads are responsible for creating events for themselves. The event timer will then notify a game thread at the specified time. As illustrated in \cref{fig:serverarch}, game threads are not a part of the framework. Game threads are interchangeable and does not effect the framework directly. This increases the versatility of the game threads, since a developer can create his own game threads and plug them into the framework.
 
 \paragraph{Data Layer}
-Is the database representation in the model using the data mapper pattern\fxwarning{WE book ref}. The gateway is responsible for querying and updating the database and mapping the tables to objects used in the game logic and administration.
+Is the database representation in the model using the data mapper pattern\ref{WEbog}. The gateway is responsible for querying and updating the database and mapping the tables to objects used in the game logic and administration.
 
 \begin{figure}[H]
   \centering
