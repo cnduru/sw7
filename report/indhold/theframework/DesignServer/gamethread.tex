@@ -1,7 +1,7 @@
 \subsubsection{Game Thread}\label{designgamethread}
 The game thread is designed to contain all game-specific logic for the game under development. This is the place where the user of the framework should design, develop and implement all the functionality for their specific game. The Game Thread is placed at the same level as the \textit{Logic Layer}, but is not part of the framework itself. 
 
-The framework is designed to be running multiple instances of the Game Thread, one for each active game on the server. Each Game Thread will, as the name suggests, be running on its own unique thread. 
+The framework is designed to be running multiple instances of the Game Thread, one for each active game on the server. Each Game Thread will, as the name suggests, be running on its own unique thread. We decided to design the Game Thread this way to utilise the nature of modern computer systems, which runs multi-core systems allowing calculations on more threads simultaneously. By threading our program, we allow our server to make optimal use of its resources.
 
 The framework has been designed to dynamically dispatch method calls to the Game Thread. It is important that the communication obeys the exact, and case sensitive game thread method-name. Otherwise the game thread will not be able to handle the provided request and the framework will fail. 
 
