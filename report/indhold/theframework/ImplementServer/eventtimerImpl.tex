@@ -8,7 +8,7 @@ The Event Timer provides a method called \textit{AddGameEvent()}, which allows a
 
 After a Game Event has been triggered, it is removed from the list in the Event Timer. This is done using the native \textit{RemoveAt()} method which are a part of lists in C\#.
 
-The Event Timer class is a part of the framework, whereas the Game Event, described in \cref{subsec:geventImpl} is not.
+The Event Timer class is a part of the framework, whereas the Game Event, described in \Cref{subsec:geventImpl} is not.
 
 \subsubsection{Game Event}\label{subsec:geventImpl}
-The Game Event is implemented as a ``container'' for information about Game Events. It has a constructor which initializes variables gameId, eventType and triggerTimestamp. The rest of the class simply consists of getters for these variables. The getters are used by the Event Timer, described in \cref{subsec:eventtimerimpl}. Instances of the Game Event class are game specific, which means that each of the instantiated Game Events belong to a game, and are therefore not part of the framework. The user of the framework can code any desired Game Events into this class.
+The Game Event is implemented as a ``container'' for information about Game Events. It has a constructor which initializes variables gameId, eventType and triggerTimestamp. The rest of the class simply consists of getters for these variables. The getters are used by the Event Timer, described in \Cref{subsec:eventtimerimpl}. Instances of the Game Event class are game specific, which means that each of the instantiated Game Events belong to a game, and are therefore not part of the framework. The user of the framework can code any desired Game Events into this class.
