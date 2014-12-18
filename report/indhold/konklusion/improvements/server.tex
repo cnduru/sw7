@@ -1,14 +1,13 @@
-\subsection{Noget server.}
-This section will contains possible improvements upon the current implementation. 
+\subsection{Improvements on the Server}
+This section contains possible improvements upon the current implementation of the server. \fxfatal{Skriv noget mere? Meget vag intro}
 
 \subsubsection{Multi Threading}
-In our implementation of the framework we have used threads and this has lead to a some unresolved issues. An example of this is in the dispatcher, see \Cref{sec:dispImplementation}, where threads gives problems when creating or closing games. This could be solved by restricting access to \texttt{GameThreadPool} which is currently shared amount all worker threads.
+In our implementation of the framework we have use a lot of threading, which has lead to a some unresolved issues. An example of this is in the dispatcher (see \Cref{sec:dispImplementation}), where threads gives problems when creating or closing games. The issue stems from the \textit{GameThreadPool} which is accessible from all worker threads without restriction. This means the list of threads can be modified while other threads are actively performing operations on the list, causing a race condition. The problem could be solved by locking the \texttt{GameThreadPool} every time a thread is using it. \fxfatal{Er den beskrivelse af problemet rigtig?}
 
-Another issue is that there is no set limit how many games can run at the same time. Eventually exceptions will be thrown when continuing to generate game threads.
-
+Another issue is that there is no limit on how many games can run at the same time. At some point the server will fail to keep up, throwing exceptions when it is unable to provide more threads for running games.
 
 \subsubsection{Blurriness Between Client and Sever}
-In the implementation of the game not all method where implemented generically. An example is the callable method \texttt{Shoot} and the class weapon. Methods like \texttt{Shoot} should have been implemented with a \texttt{UseItem} call according to our design.
+In the implementation of the game not all method were implemented generically. An example is the request \textit{Shoot} which uses a weapon on another user. By the name alone, it is very specific to the implemented game. Methods like this should have been implemented with a more generic name, such as \textit{UseItem} according to our design. \fxfatal{Maybe there's examples where it is the actual functionality, rather than just the name?}
 
 \subsubsection{Trusty Server}
-There is no validation on request made by the client, this makes the framework vulnerable to cheating. An simple improvements for this issue could be the implementation of a session ID to replace the playerID's currently used for communication between client and server. This would enforce a login to be accepted before any other request could be made and hides the playerIDs for the client\fxwarning{why is this a benefit?}.
+There is currently no validation on requests made by the client which makes the framework vulnerable to cheating. A simple improvement for this issue could be the implementation of a session ID to replace the player ID currently used for communication between client and server. This would enforce a login to be accepted before any other request could be made and hides the player ID for the client\fxwarning{why is this a benefit? And would it help against cheating that the cheater has an actual user?}.
