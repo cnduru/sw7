@@ -9,7 +9,7 @@ It was helpful to build a game alongside the framework, this helped us to figure
 
 %Dispatcher Service
 \subsection{Dispatcher Service}
-This layer is responsible for communication between client and server, this responsibility is divided between an IO module and a Dispatcher. In this section we will first examine Synchronous and Asynchronous IO in order to determine which is best suited for this framework and then the Dispatcher which forwards messages to the Logic Layer. We decided on Asynchronous IO and base our design on \cite{?} 	 %http://msdn.microsoft.com/en-us/library/fx6588te%28v=vs.110%29.aspx
+This layer is responsible for communication between client and server, this responsibility is divided between an IO module and a Dispatcher. In this section we will first examine Synchronous and Asynchronous IO in order to determine which is best suited for this framework and then the Dispatcher which forwards messages to the Logic Layer. 
 
 The Asynchronous IO unit is handling socket creation and TCP/IP communication, a rather trivial part of a client-server interface when you disregard the communication type. The need for out Dispatcher unit has been revealed by building our game. We need a way to dispatch requests from the client to the right component and method on the server. We dispatch to either Admin or Game Thread, by reading the request from the client and determine what type of request it is and continue accordingly. We decided to build the Dispatcher to encapsulate reading and analysing the requests from the client. Alternatively, we could have handed everything to Admin and incorporated the Dispatcher's functionality into the Admin, but we did not consider this a well structured framework.
 

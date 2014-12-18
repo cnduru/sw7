@@ -1,3 +1,3 @@
 \paragraph{Asynchronous IO}
 \label{sec:asyncImplementation}
-\fixme{HUSK KILDE HVIS DER ER KOPIERET KODE}
+We decided to base our asynchronous IO implementation on \cite{asynh-imlp}. The implementation consist of a few method to handle async OI, these are \texttt{StartListening}, \texttt{AcceptCallback}, \texttt{ReadCallback} and \texttt{Send}. \texttt{StartListening} is responsible for listening for sockets connections and when a connection is established a AsyncCallback(part of the .net threading library) is made with \texttt{AcceptCallback} to process the incoming data. \texttt{AcceptCallback} prepares for receiving data then calls \texttt{ReadCallback}. \texttt{ReadCallback} reads data from the socket until an end of file tag is read at which point the data is parsed on to the dispatcher. Finally \texttt{Send} is used to send the result of the request back to the client.  %http://msdn.microsoft.com/en-us/library/fx6588te%28v=vs.110%29.aspx
