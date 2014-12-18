@@ -1,7 +1,7 @@
 \subsection{Improvements on the Application}
 While the application turned out as desired, in terms of structuring the flow of the user interface, there are certainly room for improvement in the rest of the application. These are pointed out here.
 
-\paragraph{Lack of intuitive input methods}
+\paragraph{Lack of Intuitive Input Methods}
 Given that the application focus was on functionality to demonstrate the abilities of the server, user-friendliness was secondary in the development. This is most prominent when trying to create a new game. Deciding when the game starts and ends is only possible using hours as input. This is however problematic, as a user will have to manually calculate the desired number of hours, if the game should start for example 8PM the same day. The issue gets worse if planning games further ahead as 20 hours quickly turns into 237 hours. To know when the game will end, the user have to further add these hours onto the time the game started.
 
 Another problem is precision. Having games starting only on whole hour intervals can be quite the annoyance for users.
@@ -10,13 +10,13 @@ To solve the problem, an alternative approach would be to display a full calenda
 
 Creating boundaries for the playing field is also problematic, as it is designed as four text fields, asking for two sets of latitude and longitude. The user would have to find out from somewhere else, what the desired boundaries should be. It can not be deducted from the game itself. To improve upon this, the text fields should be removed and replaced with a map that the user can draw on, simply dragging across the map where the game should be. This would be more user-friendly in that it is quicker and abstracts from the use of coordinates entirely.
 
-\paragraph{Graphic design}
+\paragraph{Graphic Design}
 Making the application visually appealing was also a non-priority, but something that would have to be considered, if the game should make it to the market. Everything has been designed using standard Android components on a white background, which means that the application has a feel of being gray-scale and boring to look at.
 
 \paragraph{Functionality}
 Although a primary focus, the application is still lacking much functionality, when comparing the implementation to the game described in \Cref{subsec:game-rules}. Missing features include but are not limited to team functionality, signing up, map objectives and scoring. These are of course all critical elements that would have to be developed for the game to be meaningful.
 
-\paragraph{Server communication}
+\paragraph{Server Communication}
 Perhaps the most important point as to the focus of this project, the handling of server communication could be improved. Except from the Client class which has generic \textit{send} and \textit{read} methods for in- and outgoing communication, the libraries created to handle server XML is specific to the game that has been created. In reality, this should have been turned into an API for anyone wanting to develop an Android game, using the server framework. This is however difficult to achieve. The pro in making specific XML encodes and decodes is that we can guarantee that both server and client understands each other, as malformed messages can never occur. If we were to create a generic API that everyone can use, improvements would be needed to handle requests that can not be recognized. In this case the client should be able to handle a response indicating that something went wrong. For the client side, the ingoing XML would have to be handled by the programmer, as we can not know what the XML will contain. It would be possible to create methods to generate XML-formatted requests, but the server might not understand them.
 
 Moreover, the communication itself should be improved. Currently the Client class is very naive in the handling of server communication. If it can not connect, it will crash, and if the server does not respond for some reason, it also crashes. The application is currently entirely dependent on the server being present. Anything that can go wrong during the communication process can kill the application. To fix a lack of response from the server, a method could be implemented to retry for a time, and otherwise tell the user that the server is not responding, if the problem persists. In case the application is entirely unable to contact the server, it should also time-out the request, try again and finally display the error to the user. Helpful messages such as "No Internet connection" could also help the user realize if the error is due to user error.
