@@ -10,13 +10,13 @@ Just like TCP/IP is offered in our programming language, there is also a library
 
 %Logic Layer
 \subsection{Logic Layer}
-In this section we will describe the implementation of the Logic Layer as the game developed alongside the architecture. The Admin, Event Timer modules and Game Thread are implemented as an \texttt{Admin}, \texttt{EventTimer} and \texttt{GameThread} class respectively. Additionally XML helper classes \texttt{XMLBuilder} and \texttt{XMLHandler} will be covered.
+In this section we will describe the implementation of the Logic Layer, consisting of the Admin and Event Timer modules, implemented as an \texttt{Admin} and \texttt{EventTimer} class respectively. It also contains a description of the \texttt{GameThread} class which is where the individual game rules should be implemented. Additionally, the XML helper classes \texttt{XMLBuilder} and \texttt{XMLHandler} will be covered.
 
-Since we developed a game alongside our framework, we implemented our own version of the Game Thread. We realised that XML would become a big part of the framework, and we would be writing the same code in multiple places if we did not implement a generic way to handle and build the XML communication interface. Additionally, we could handle conversion from strings of characters to the correct type in the XML handler. 
+Since we developed a game alongside our framework, we implemented our own version of the Game Thread. We realized that XML would become a big part of the framework, and we would be writing the same code in multiple places if we did not implement a generic way to handle and build the XML communication interface. Additionally, we could handle conversion from strings of characters to the correct type in the XML handler. 
 
 The Event Timer has been implemented as framework functionality and it works as intended, although we did use it in the game we developed. The implementation allows the user to specify any event in the Game Event class and call it upon a Game Thread. 
 
-The framework allows the use of items, which we in our game designed and developed as weapons. However, the user of the framework can consider in whichever way desired. Our game has implemented a Weapon class, which specifies a list of weapons to be used in the game. If you wish to store a harmful shot hitting a player, reducing the health-points of the player, the database offers the use of \textit{Status Effect} to store this for later use. Since the implementation of Items is game specific, we do not explain our implementation of weapons further.
+The framework allows the use of items, which we in our game designed and developed as weapons. However, the user of the framework can implement items in whichever way desired. Our game has implemented a \texttt{Weapon} class which specifies a list of weapons to be used in the game. If you wish to store a harmful shot hitting a player, reducing the health-points of the player, the database offers the use of \textit{Status Effect} to store this for later use. Since the implementation of items is game specific, we do not explain our implementation of weapons further.
 
 \input{indhold/theframework/ImplementServer/adminImpl}
 \input{indhold/theframework/ImplementServer/eventtimerImpl}
@@ -26,5 +26,5 @@ The framework allows the use of items, which we in our game designed and develop
 
 %Data Layer
 \subsection{Data Layer}
-As described in \Cref{sec:server} the game treads and the admin class relies on a Data Mapper to handle communication with the database. The Data Mapper is based on the data mapper patten \ref{WEbog}. The benefit of this is that the logic layer does not have to worry about the underlying database structure.
+As described in \Cref{sec:server} the game threads and the admin class rely on a Data Mapper to handle communication with the database. The Data Mapper is based on the data mapper pattern \cite{fowler}. The benefit of this is that the Logic Layer does not have to worry about the underlying database structure.
 \input{indhold/theframework/ImplementServer/db}
