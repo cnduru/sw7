@@ -1,8 +1,12 @@
 \subsubsection{Admin}
 \label{sec:adminimpl}
-The Admin class handles requests from the client that can be classified as not game specific. These are requests for something like:
+The Admin class handles requests from the client that can be classified as not game specific. These are requests like:
 \begin{itemize}
 \item \textit{VerifiyAccount} handles login-requests from the client.
-\item \textit{CreateGame} handles requests to start a new game
+\item \textit{CreateGame} handles requests to create and start a new game.
 \end{itemize}
+
+The Admin will handle these requests by querying the database through the Data Layer, more specific the DBController class. The database will then return the desired data that can be used for something like administrative logic for login, the information in this case being the password for a given username. These logical computations will be available in the Admin class, alongside functionality to fetch all active games stored in the database. We made this functionality, because we want to avoid asking all active Game Threads to respond to a client request looking for all active games. This would be bad design considering our desire to make a scalable framework, imagine if thousands of users requests to see the list of active games. 
+
+
 
