@@ -42,42 +42,42 @@ Each script is run on seperate computers, to be sure the extra processing power 
 \renewcommand{\arraystretch}{1.2}
 \begin{table}
 \label{tab:1}
-\caption{Test}
+\caption{Test with no load}
 \centering
 \begin{tabular}{|l|>{\raggedleft\arraybackslash}p{5em}|>{\raggedleft\arraybackslash}p{5em}|>{\raggedleft\arraybackslash}p{5em}|>{\raggedleft\arraybackslash}p{5em}|}
-	\hline  & \multicolumn{1}{p{5em}|}{Mean} & \multicolumn{1}{p{5em}|}{Standard deviation} & \multicolumn{1}{p{5em}|}{\# over limit} \\ 
-	\hline Login  &  &  &  \\ 
-	\hline Get public games  &  &  &  \\ 
-	\hline Get joined games  &  &  &  \\ 
-	\hline Create game  &   &  &  \\ 
-	\hline Delete game  &  &  &  \\ 
-	\hline Join game  &  &  &  \\ 
-	\hline Leave game  &  &  &  \\ 
-	\hline Game info  &  &  &  \\ 
-	\hline Invite player  &  &  &  \\ 
-	\hline Change position  &  &  &  \\ 
-	\hline Shoot  &  &  &  \\ 
+	\hline  & \multicolumn{1}{p{5em}|}{Mean (sec)} & \multicolumn{1}{p{5em}|}{\# over limit} & \multicolumn{1}{p{5em}|}{\# timed out} \\ 
+	\hline Login  & 0.0135 & 3 & 0 \\ 
+	\hline Get public games  & 0.0118 & 2 & 0 \\ 
+	\hline Get joined games  & 0.0565 & 10 & 1 \\ 
+	\hline Create game  & 0.0131 & 1 & 0 \\ 
+	\hline Join game  & 0.0118 & 2 & 0 \\ 
+	\hline Get game info  & 0.0114 & 2 & 0 \\ 
+	\hline Invite player  & 0.0100 & 1 & 0 \\ 
+	\hline Change position  & 0.0097 & 0 & 1 \\ 
+	\hline Shoot player  & 0.0168 & 3 & 0 \\ 
+	\hline Leave game  & 0.0067 & 1 & 1 \\ 
+	\hline Delete game  & 0.0102 & 0 & 0 \\ 
 	\hline 
 \end{tabular} 
 \end{table}
 
 \begin{table}
 \label{tab:2}
-\caption{Test}
+\caption{Test with load}
 \centering
 \begin{tabular}{|l|>{\raggedleft\arraybackslash}p{5em}|>{\raggedleft\arraybackslash}p{5em}|>{\raggedleft\arraybackslash}p{5em}|>{\raggedleft\arraybackslash}p{5em}|}
-	\hline  & \multicolumn{1}{p{5em}|}{Mean} & \multicolumn{1}{p{5em}|}{Standard deviation} & \multicolumn{1}{p{5em}|}{\# over limit} \\ 
-	\hline Login  &  &  &  \\ 
-	\hline Get public games  &  &  &  \\ 
-	\hline Get joined games  &  &  &  \\ 
-	\hline Create game  &   &  &  \\ 
-	\hline Delete game  &  &  &  \\ 
-	\hline Join game  &  &  &  \\ 
-	\hline Leave game  &  &  &  \\ 
-	\hline Game info  &  &  &  \\ 
-	\hline Invite player  &  &  &  \\ 
-	\hline Change position  &  &  &  \\ 
-	\hline Shoot  &  &  &  \\ 
+	\hline  & \multicolumn{1}{p{5em}|}{Mean} & \multicolumn{1}{p{5em}|}{\# over limit} & \multicolumn{1}{p{5em}|}{\# timed out} \\ 
+	\hline Login  & 0.3676 & 262 & 1 \\ 
+	\hline Get public games  & 0.4825 & 328 & 0 \\ 
+	\hline Get joined games  & 0.4959 & 353 & 0 \\ 
+	\hline Create game  & 0.4143 & 306 & 0 \\ 
+	\hline Join game  & 0.4096 & 289 & 0 \\ 
+	\hline Get game info  & 0.4051 & 279 & 0 \\ 
+	\hline Invite player  & 0.3752 & 273 & 0 \\ 
+	\hline Change position  & 0.4050 & 276 & 0 \\ 
+	\hline Shoot  & 0.3806 & 259 & 0 \\ 
+	\hline Leave game  & 0.3814 & 253 & 0 \\ 	
+	\hline Delete game  & 0.3721 & 299 & 0 \\ 
 	\hline 
 \end{tabular} 
 \end{table}
