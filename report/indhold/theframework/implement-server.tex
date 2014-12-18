@@ -6,6 +6,8 @@ Just like TCP/IP is offered in our programming language, there is also a library
 
 We wanted the implementation of our Dispatcher Service to be quick because we wanted to work on more specific framework flexibility and functionality. Network communication has been done in many other applications and we did not want to spend a long time on something that can be copied from others and does not differ far from other implementations. 
 
+
+
 \input{indhold/theframework/ImplementServer/asyncImpl}
 \input{indhold/theframework/ImplementServer/dispatcherImpl}
 
@@ -30,6 +32,3 @@ The framework allows the use of items, which we in our game designed and develop
 \subsection{Data Layer}
 As described in \Cref{sec:server} the game treads and the admin class relies on a Data Mapper to handle communication with the database. The Data Mapper is based on the data mapper patten \fxwarning{ref WE bog}. The benefit of this is that the logic layer does not have to worry about the underlying database structure.
 \input{indhold/theframework/ImplementServer/db}
-
-
-\subsection{Evaluation of Implementation}
