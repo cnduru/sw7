@@ -1,5 +1,5 @@
 \subsection{Improvements on the Server}
-This section contains possible improvements upon the current implementation of the server. \fxfatal{Skriv noget mere? Meget vag intro}
+This section contains possible improvements upon the current implementation of the server. These were discovered doing testing and evaluation in the later phases of the project.  
 
 \subsubsection{Multi Threading}
 In our implementation of the framework we have used a lot of threading, which has lead to a some unresolved issues. An example of this is in the Dispatcher (see \Cref{sec:dispImplementation}), where threads causes problems when creating or closing games. The issue stems from the \textit{GameThreadPool} which is accessible from all worker threads without restriction, a shared resource. This means the list of threads can be modified while other threads are actively performing operations on the list, causing a race condition. The problem could be solved by locking the \texttt{GameThreadPool} every time a thread is using it.
