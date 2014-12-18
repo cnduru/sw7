@@ -1,8 +1,8 @@
 \subsubsection{Event Timer}
 \label{sec:eventtimerimpl}
-The Event Timer is started when the server launches. It runs in its own thread and it enters an infinite loop where it loops over Game Events. For every iteration in the loop, the Event Timer checks all Game Events in the list, whether the current time is past the timestamp for the Game Event has passed. 
+The Event Timer is started when the server launches. It runs in its own thread and it enters an infinite loop where it loops over Game Events. For every iteration in the loop, the Event Timer checks all Game Events in the list to see whether the current time is past the timestamp for the Game Event. 
 
-All Game Events is assigned a timestamp upon creation. The Event Timer iterates through the list of Game Events, and checks the timestamp by calling the method \textit{GetTriggerTimestamp()} and compares it to the current time. If the timestamp value is less than the current time (in other words, the event trigger threshold has been passed), the Game Event is triggered by calling the \textit{RunGameEvent()} method assigned to each Game Event. 
+All Game Events are assigned a timestamp upon creation. The Event Timer iterates through the list of Game Events, and checks the timestamp by calling the method \textit{GetTriggerTimestamp()} and compares it to the current time. If the timestamp value is less than the current time (in other words, the event trigger threshold has been passed), the Game Event is triggered by calling the \textit{RunGameEvent()} method assigned to each Game Event. 
 
 The Event Timer provides a method called \textit{AddGameEvent()}, which allows addition of new game events to its internal list of Game Events.
 
